@@ -1,0 +1,4 @@
+Vendedor - faltam atributos n_telefone		X
+Comprador ?							X
+Tirar filtragem							X
+Passar atributos da peça para entidade.		X
