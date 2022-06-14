@@ -1,49 +1,50 @@
 --create database stand;
 use stand;
 create table utilizador(
-	ID_utilizador		varchar(9)			not null primary key,
+	ID_utilizador		int					not null	identity(1,1),
 	FName				varchar(30)			not null,
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,
 	email				varchar(40)			not null,
-	pw					varchar(20)			not null
+	pw					varchar(20)			not null,
+	primary key (ID_utilizador)
 );
 
 create table cliente(
-	ID_Cliente			varchar(9)			not null primary key
+	ID_Cliente			int			not null primary key
 	foreign key references Utilizador(ID_utilizador)
 );
 
 create table vendedor(
-	ID_Vendedor			varchar(9)			not null foreign key references Utilizador(ID_utilizador),
+	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador),
 	NIF					varchar(9)			not null primary key
 );
 
 create table anuncio(
-	ID_Anuncio			varchar(9)			not null primary key,
-	ID_Vendedor			varchar(9)			not null foreign key references Utilizador(ID_utilizador),
+	ID_Anuncio			int			not null primary key identity(1,1),
+	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador),
 	Titulo				varchar(100),
 	Preco				real
 );
 
 create table favourites(
-	ID_Client			varchar(9)			not null foreign key references cliente(ID_Cliente),
-	ID_Anuncio			varchar(9)			not null foreign key references anuncio(ID_Anuncio)
+	ID_Client			int					not null foreign key references cliente(ID_Cliente),
+	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)
 );
 
 create table item (
-	ID					varchar(9)			not null	primary key,
-	ID_Anuncio			varchar(9)			not null foreign key references anuncio(ID_Anuncio)
+	ID					int					not null	primary key identity(1,1),
+	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)
 );
 
 create table peca(
-	ID_Item				varchar(9)			not null	primary key	foreign key references Item(ID),
+	ID_Item				int					not null	primary key	foreign key references Item(ID),
 	Nome				varchar(30)			not null,
 	Condicao			varchar(10)			not null	check(Condicao = 'Usado' or Condicao='Novo')
 );
 
 create table categoria(
-	ID_Peca				varchar(9)			not null	foreign key references Peca(ID_Item),
+	ID_Peca				int					not null	foreign key references Peca(ID_Item),
 	Nome				varchar(20)			not null	check(Nome = 'Interiores' or Nome = 'Acessorios' or Nome = 'Suspensao' or Nome = 'Iluminacao' or Nome = 'Carrocaria' or Nome = 'Caixa Velocidades'),
 );
 
@@ -53,7 +54,7 @@ create table categoria(
 --);
 
 create table veiculo(
-	ID_Item				varchar(9)			not null	primary key	foreign key references Item(ID),
+	ID_Item				int					not null	primary key	foreign key references Item(ID),
 	Matricula			varchar(6)			not null,
 	Modelo				varchar(20)			not null,
 	Ano					int					not null,
@@ -62,7 +63,7 @@ create table veiculo(
 );
 
 create table veiculo_terrestre (
-	ID_Veiculo			varchar(9)			foreign key references Veiculo(ID_Item),
+	ID_Veiculo			int					foreign key references Veiculo(ID_Item),
 	sub_modelo			varchar(30),		
 	segmento			varchar(30)			not null,	--citadino, coupe etc etc
 	quilometros			int					not null,
@@ -70,7 +71,24 @@ create table veiculo_terrestre (
 );
 
 create table veiculo_aquatico (
-	ID_Veiculo			varchar(9)			foreign key references Veiculo(ID_Item),
+	ID_Veiculo			int					foreign key references Veiculo(ID_Item),
 	propulsao			varchar				not null			check(propulsao = 'Remo' or propulsao = 'Vela' or propulsao = 'Motor'), 
 	tipo_veiculo		varchar(20)			not null			check(tipo_veiculo = 'Barco' or tipo_veiculo = 'Mota_agua')
 );
+
+
+/* Drop tables */
+/*
+use stand;
+drop table veiculo_terrestre;
+drop table veiculo_aquatico;
+drop table veiculo;
+drop table categoria;
+drop table peca;
+drop table item;
+drop table favourites;
+drop table anuncio;
+drop table cliente;
+drop table vendedor;
+drop table utilizador;
+*/

@@ -11,42 +11,22 @@ using System.Data.SqlClient;
 
 namespace project_c
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        SqlConnection cnn;
+        String email;
+        String pw;
+        String fuel_value = "";
+        String km_value = "";
+
+        public LoginForm()
         {
             InitializeComponent();
         }
         
-        SqlConnection cnn;
-        String email;
-        String pw;
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("Connection Open! ");
-
-            //SqlCommand command;
-            //SqlDataReader dataReader;
-            //String sql, output = "";
-            //String username = user_input.Text;
-            //sql = "select * from utilizador where Fname = '" + username + "'";
-
-            //command = new SqlCommand(sql, cnn);
-
-            //dataReader = command.ExecuteReader();
-
-            //while(dataReader.Read())
-            //{
-            //    output = output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "\n";
-            //}
-
-            //MessageBox.Show(output);
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -56,7 +36,11 @@ namespace project_c
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            string connectionString;
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
+            cnn = new SqlConnection(connectionString);
+            cnn.Open();
+            MessageBox.Show("Connection Open! ");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,7 +61,7 @@ namespace project_c
             {
                 res = res + reader.GetValue(0);
             }
-
+            reader.Close();
             MessageBox.Show(res);
 
             if(res == "")
@@ -86,6 +70,10 @@ namespace project_c
             } else
             {
                 MessageBox.Show("Login Successfull.");
+                this.Hide();
+                cnn.Close();
+                Form2 form2 = new Form2();
+                form2.Show();
             }
             
         }
@@ -98,6 +86,70 @@ namespace project_c
         private void email_input_TextChanged(object sender, EventArgs e)
         {
             email = email_input.Text;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            cnn.Close();
+            RegisterForm regForm = new RegisterForm();
+            regForm.Show();
+        }
+
+        private void search_input_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void search_button_Click(object sender, EventArgs e)
+        {
+            string res = "";
+            SqlCommand cmd;
+            // search bar
+            //if(fuel_value != "" && km_value != "")
+            //{
+                cmd = new SqlCommand("search_km_fuel", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@title", search_input.Text));
+                cmd.Parameters.Add(new SqlParameter("@fuel", fuel_value));
+                cmd.Parameters.Add(new SqlParameter("@kms", km_value));
+                SqlDataReader reader;
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    res += reader["Titulo"] + ", " + reader["preco"] + ", " + reader["Marca"] + ", " + reader["Modelo"] + ", " + reader["Ano"] + ", " + reader["Combustivel"] + ", " + reader["quilometros"] + ", " + reader["Matricula"] + "\n";
+                }
+                reader.Close();
+            //} else
+            //{
+            //    cmd = new SqlCommand("search_anuncio", cnn);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    cmd.Parameters.Add(new SqlParameter("@title", search_input.Text));
+            //    SqlDataReader reader;
+            //    reader = cmd.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        res += reader["Titulo"] + ", " + reader["preco"] + "\n";
+            //    }
+            //    reader.Close();
+
+            //}
+            MessageBox.Show(res);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.fuel_value = filter_fuel.SelectedItem.ToString();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void km_input_TextChanged(object sender, EventArgs e)
+        {
+            this.km_value = km_input.Text;
         }
     }
 }
