@@ -11,15 +11,16 @@ using System.Data.SqlClient;
 
 namespace project_c
 {
-    public partial class LoginForm : Form
+    public partial class MainForm : Form
     {
         SqlConnection cnn;
-        String email;
-        String pw;
-        String fuel_value = "";
-        String km_value = "";
+        string email;
+        string pw;
+        string fuel_value = "";
+        string km_value = "";
+        string search_value = "";
 
-        public LoginForm()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -40,7 +41,6 @@ namespace project_c
             connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
-            MessageBox.Show("Connection Open! ");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -50,42 +50,11 @@ namespace project_c
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd;
-            SqlDataReader reader;
-
-            string cmd_string = "select email, pw from utilizador where email='" + email + "' and pw='" + pw +"'";
-            cmd = new SqlCommand(cmd_string, cnn);
-            reader = cmd.ExecuteReader();
-            string res = "";
-            while(reader.Read())
-            {
-                res = res + reader.GetValue(0);
-            }
-            reader.Close();
-            MessageBox.Show(res);
-
-            if(res == "")
-            {
-                MessageBox.Show("Login Error.");
-            } else
-            {
-                MessageBox.Show("Login Successfull.");
-                this.Hide();
-                cnn.Close();
-                Form2 form2 = new Form2();
-                form2.Show();
-            }
+            this.Hide();
+            cnn.Close();
+            LoginForm form = new LoginForm();
+            form.Show();
             
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            pw = pw_input.Text;
-        }
-
-        private void email_input_TextChanged(object sender, EventArgs e)
-        {
-            email = email_input.Text;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -98,43 +67,22 @@ namespace project_c
 
         private void search_input_TextChanged(object sender, EventArgs e)
         {
-            
+            this.search_value = search_input.Text;
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            string res = "";
             SqlCommand cmd;
-            // search bar
-            //if(fuel_value != "" && km_value != "")
-            //{
-                cmd = new SqlCommand("search_km_fuel", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@title", search_input.Text));
-                cmd.Parameters.Add(new SqlParameter("@fuel", fuel_value));
-                cmd.Parameters.Add(new SqlParameter("@kms", km_value));
-                SqlDataReader reader;
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    res += reader["Titulo"] + ", " + reader["preco"] + ", " + reader["Marca"] + ", " + reader["Modelo"] + ", " + reader["Ano"] + ", " + reader["Combustivel"] + ", " + reader["quilometros"] + ", " + reader["Matricula"] + "\n";
-                }
-                reader.Close();
-            //} else
-            //{
-            //    cmd = new SqlCommand("search_anuncio", cnn);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-            //    cmd.Parameters.Add(new SqlParameter("@title", search_input.Text));
-            //    SqlDataReader reader;
-            //    reader = cmd.ExecuteReader();
-            //    while (reader.Read())
-            //    {
-            //        res += reader["Titulo"] + ", " + reader["preco"] + "\n";
-            //    }
-            //    reader.Close();
 
-            //}
-            MessageBox.Show(res);
+            cmd = new SqlCommand("search_km_fuel", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@title", search_value));
+            cmd.Parameters.Add(new SqlParameter("@fuel", fuel_value));
+            cmd.Parameters.Add(new SqlParameter("@kms", km_value));
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(table);
+            search_result_table.DataSource = table;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,6 +98,19 @@ namespace project_c
         private void km_input_TextChanged(object sender, EventArgs e)
         {
             this.km_value = km_input.Text;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void profile_button_Click(object sender, EventArgs e)
+        {
+            this.cnn.Close();
+            ProfileForm form = new ProfileForm();
+            this.Hide();
+            form.Show();
         }
     }
 }

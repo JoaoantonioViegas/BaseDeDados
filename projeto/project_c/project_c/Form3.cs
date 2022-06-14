@@ -90,7 +90,7 @@ namespace project_c
 
             this.Hide();
             cnn.Close();
-            LoginForm log_form = new LoginForm();
+            MainForm log_form = new MainForm();
             log_form.Show();
         }
 

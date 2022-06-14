@@ -1,7 +1,7 @@
 ﻿
 namespace project_c
 {
-    partial class LoginForm
+    partial class MainForm
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,10 +29,6 @@ namespace project_c
         /// </summary>
         private void InitializeComponent()
         {
-            this.email_input = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Password = new System.Windows.Forms.Label();
-            this.pw_input = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.login_button = new System.Windows.Forms.Button();
             this.search_input = new System.Windows.Forms.TextBox();
@@ -43,46 +39,14 @@ namespace project_c
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.km_input = new System.Windows.Forms.TextBox();
+            this.search_result_table = new System.Windows.Forms.DataGridView();
+            this.profile_button = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.search_result_table)).BeginInit();
             this.SuspendLayout();
-            // 
-            // email_input
-            // 
-            this.email_input.Location = new System.Drawing.Point(110, 93);
-            this.email_input.Name = "email_input";
-            this.email_input.Size = new System.Drawing.Size(166, 22);
-            this.email_input.TabIndex = 1;
-            this.email_input.TextChanged += new System.EventHandler(this.email_input_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Email:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // Password
-            // 
-            this.Password.AutoSize = true;
-            this.Password.Location = new System.Drawing.Point(36, 154);
-            this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(73, 17);
-            this.Password.TabIndex = 3;
-            this.Password.Text = "Password:";
-            // 
-            // pw_input
-            // 
-            this.pw_input.Location = new System.Drawing.Point(110, 154);
-            this.pw_input.Name = "pw_input";
-            this.pw_input.Size = new System.Drawing.Size(166, 22);
-            this.pw_input.TabIndex = 4;
-            this.pw_input.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(174, 231);
+            this.button3.Location = new System.Drawing.Point(93, 26);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
@@ -92,7 +56,7 @@ namespace project_c
             // 
             // login_button
             // 
-            this.login_button.Location = new System.Drawing.Point(39, 231);
+            this.login_button.Location = new System.Drawing.Point(12, 26);
             this.login_button.Name = "login_button";
             this.login_button.Size = new System.Drawing.Size(75, 23);
             this.login_button.TabIndex = 7;
@@ -120,7 +84,7 @@ namespace project_c
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(680, 101);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 21);
+            this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Search";
             // 
@@ -153,7 +117,7 @@ namespace project_c
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(680, 161);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 21);
+            this.label4.Size = new System.Drawing.Size(71, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Fuel Type";
             // 
@@ -162,7 +126,7 @@ namespace project_c
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(680, 237);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 21);
+            this.label5.Size = new System.Drawing.Size(74, 17);
             this.label5.TabIndex = 14;
             this.label5.Text = "Kilometers";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -175,11 +139,34 @@ namespace project_c
             this.km_input.TabIndex = 15;
             this.km_input.TextChanged += new System.EventHandler(this.km_input_TextChanged);
             // 
-            // LoginForm
+            // search_result_table
+            // 
+            this.search_result_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.search_result_table.Location = new System.Drawing.Point(3, 309);
+            this.search_result_table.Name = "search_result_table";
+            this.search_result_table.RowHeadersWidth = 51;
+            this.search_result_table.RowTemplate.Height = 24;
+            this.search_result_table.Size = new System.Drawing.Size(1640, 480);
+            this.search_result_table.TabIndex = 16;
+            this.search_result_table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // profile_button
+            // 
+            this.profile_button.Location = new System.Drawing.Point(174, 26);
+            this.profile_button.Name = "profile_button";
+            this.profile_button.Size = new System.Drawing.Size(75, 23);
+            this.profile_button.TabIndex = 17;
+            this.profile_button.Text = "Profile";
+            this.profile_button.UseVisualStyleBackColor = true;
+            this.profile_button.Click += new System.EventHandler(this.profile_button_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1455, 634);
+            this.ClientSize = new System.Drawing.Size(1644, 790);
+            this.Controls.Add(this.profile_button);
+            this.Controls.Add(this.search_result_table);
             this.Controls.Add(this.km_input);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -190,23 +177,16 @@ namespace project_c
             this.Controls.Add(this.search_input);
             this.Controls.Add(this.login_button);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.pw_input);
-            this.Controls.Add(this.Password);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.email_input);
-            this.Name = "LoginForm";
-            this.Text = "Login";
+            this.Name = "MainForm";
+            this.Text = "Main";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.search_result_table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox email_input;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label Password;
-        private System.Windows.Forms.TextBox pw_input;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button login_button;
         private System.Windows.Forms.TextBox search_input;
@@ -217,6 +197,8 @@ namespace project_c
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox km_input;
+        private System.Windows.Forms.DataGridView search_result_table;
+        private System.Windows.Forms.Button profile_button;
     }
 }
 

@@ -8,6 +8,7 @@ namespace project_c
 {
     static class Program
     {
+        public static string log_id = "";
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
@@ -16,7 +17,7 @@ namespace project_c
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new MainForm());
         }
     }
 }

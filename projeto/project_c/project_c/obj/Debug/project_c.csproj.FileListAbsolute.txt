@@ -19,3 +19,5 @@ C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project_c\project_c\obj\Debug\project_c.pdb
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project_c\project_c\obj\Debug\project_c.LoginForm.resources
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project_c\project_c\obj\Debug\project_c.RegisterForm.resources
+C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project_c\project_c\obj\Debug\project_c.MainForm.resources
+C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\project_c\project_c\obj\Debug\project_c.ProfileForm.resources

@@ -40,34 +40,7 @@ select ID_Item, Matricula, Modelo, Marca, quilometros from (veiculo_terrestre jo
 where quilometros <= @input_km;
 
 /* ===== Procedures ===== */
--- Procurar por título do anúncio
-create procedure search_anuncio
-	@title as varchar(40)
-as
-	select * from anuncio
-	where lower(Titulo) like '%' + lower(@title) + '%';
-go
-
--- Filtrar anúncios por tipo de combustível do veículo
-create procedure filter_by_fuel
-	@fuel as varchar(20)
-as
-	select * from anuncio join (item join veiculo on item.ID = veiculo.ID_Item) on anuncio.ID_Anuncio = item.ID_Anuncio where lower(Combustivel) = lower(@fuel);
-go
-
--- Filtrar anuncios por tipo de combustivel do veiculo e titulo
-create procedure search_and_fuel
-	@title as varchar(40),
-	@fuel as varchar(20)
-as
-	select * from anuncio join 
-		(item join veiculo on item.ID = veiculo.ID_Item)
-	on anuncio.ID_Anuncio = item.ID_Anuncio
-	where (lower(Combustivel) = lower(@fuel))
-	and (lower(Titulo) like '%' + lower(@title) + '%');
-go
-
--- Filtrar anúncios por kms
+-- Filtrar anúncios por kms, combustivel, titulo e marca
 create procedure search_km_fuel
 	@kms as int,
 	@title as varchar(40),
@@ -75,38 +48,65 @@ create procedure search_km_fuel
 as
 	if(@fuel != '' and @kms != '')
 	begin
-		select * from anuncio join 
+		select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join 
 			(item join 
 				(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
 			on item.ID = veiculo.ID_Item)
 		on anuncio.ID_Anuncio = item.ID_Anuncio
-		where (quilometros < @kms) and (lower(Titulo) like '%' + lower(@title) + '%') and (lower(Combustivel) = lower(@fuel));
+		where (quilometros < @kms) and ((lower(Titulo) like '%' + lower(@title) + '%') or (lower(Marca) like '%' + lower(@title) + '%')) and (lower(Combustivel) = lower(@fuel));
 	end
 	else if (@fuel != '' and @kms = '')
 	begin
-		select * from anuncio join 
+		select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join 
 			(item join 
 				(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
 			on item.ID = veiculo.ID_Item)
 		on anuncio.ID_Anuncio = item.ID_Anuncio
-		where (lower(Titulo) like '%' + lower(@title) + '%') and (lower(Combustivel) = lower(@fuel));
+		where ((lower(Titulo) like '%' + lower(@title) + '%') or (lower(Marca) like '%' + lower(@title) + '%')) and (lower(Combustivel) = lower(@fuel));
 	end
-		else if (@fuel = '' and @kms != '')
+	else if (@fuel = '' and @kms != '')
 	begin
-		select * from anuncio join 
+		select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join 
 			(item join 
 				(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
 			on item.ID = veiculo.ID_Item)
 		on anuncio.ID_Anuncio = item.ID_Anuncio
-		where (lower(Titulo) like '%' + lower(@title) + '%') and (quilometros < @kms) ;
+		where ((lower(Titulo) like '%' + lower(@title) + '%') or (lower(Marca) like '%' + lower(@title) + '%')) and (quilometros < @kms) ;
+	end
+	else
+	begin
+		select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join 
+			(item join 
+				(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
+			on item.ID = veiculo.ID_Item)
+		on anuncio.ID_Anuncio = item.ID_Anuncio
+		where ((lower(Titulo) like '%' + lower(@title) + '%') or (lower(Marca) like '%' + lower(@title) + '%'));
 	end
 go
 
-drop procedure search_km_fuel;
-select * from anuncio;
-select * from item;
-select * from veiculo;
-select * from veiculo_terrestre;
+-- Recebe id do user e retorna uma tabela com os seus anuncios com veiculos terrestres
+create procedure get_anuncios_utilizador_veiculos_terrestres
+	@id as int
+as
+	select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join
+		(item join
+			(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
+		on item.ID = veiculo.ID_Item)
+	on anuncio.ID_Anuncio = item.ID_Anuncio
+	where anuncio.ID_Vendedor = @id;
+go
+
+-- Recebe id do user e retorna uma tabela com os seus anuncios com pecas
+create procedure get_anuncios_utilizador_pecas
+	@id as int
+as
+	select * from anuncio join
+		(item join
+			(peca join categoria on peca.ID_Item = categoria.ID_Peca)
+		on item.ID = peca.ID_Item)
+	on anuncio.ID_Anuncio = item.ID_Anuncio
+	where anuncio.ID_Vendedor = 10;
+go
 
 /* ===== UPDATES ===== */
 -- Adicionar novo utilizador
@@ -127,8 +127,19 @@ as
 	select @r;
 go
 
-select * from utilizador;
-drop procedure create_user;
--- Remover utilizador
-delete from utilizador
-where ID_utilizador=27;
+-- Login com email e password
+create procedure login_user
+	@email as varchar(40),
+	@password as varchar(20)
+as
+	select user1.ID_utilizador from utilizador as user1 
+	join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
+	where user2.email=@email and user2.pw=@password;
+go
+
+-- Receives user id and retrieves user info
+create procedure get_user_info
+	@id	as int
+as
+	select email, Fname, Lname from utilizador where ID_utilizador = @id;
+go
