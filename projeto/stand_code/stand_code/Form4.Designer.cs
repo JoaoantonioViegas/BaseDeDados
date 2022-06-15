@@ -99,6 +99,7 @@ namespace stand_code
             this.firstname_input.Name = "firstname_input";
             this.firstname_input.Size = new System.Drawing.Size(132, 20);
             this.firstname_input.TabIndex = 6;
+            this.firstname_input.TextChanged += new System.EventHandler(this.firstname_input_TextChanged);
             // 
             // pw_input
             // 

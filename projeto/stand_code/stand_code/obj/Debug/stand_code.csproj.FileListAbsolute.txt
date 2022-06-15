@@ -11,3 +11,4 @@ C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_c
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.pdb
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.ProfileForm.resources
 C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.RegisterForm.resources
+C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.AddAdvertisementForm.resources

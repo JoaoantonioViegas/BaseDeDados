@@ -29,38 +29,21 @@ namespace stand_code
 
         private void register_button_Click(object sender, EventArgs e)
         {
-            // SqlCommand cmd = new SqlCommand("create_user", cnn);
-            // cmd.CommandType = CommandType.StoredProcedure;
-            // SqlDataReader reader = cmd.ExecuteReader();
-            using (var command = new SqlCommand("create_user", cnn)
+            SqlCommand cmd = new SqlCommand("create_user", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@fname", firstname_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@lname", lastname_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@tel", tel_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@email", email_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@pw", pw_input.Text));
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            string res = "";
+            while(reader.Read())
             {
-                CommandType = CommandType.StoredProcedure,
-                //Parameters = new SqlParameter("@fname", firstname_input),
-                //Parameters = new SqlParameter("@lname", lastname_input),
-                //Parameters = new SqlParameter("@tel", tel_input),
-                //Parameters = new SqlParameter("@email", email_input),
-                //Parameters = new SqlParameter("@pw", pw_input)
-            })
-            {
-                command.Parameters.Add(new SqlParameter("@fname", firstname_input.Text));
-                command.Parameters.Add(new SqlParameter("@lname", lastname_input.Text));
-                command.Parameters.Add(new SqlParameter("@tel", tel_input.Text));
-                command.Parameters.Add(new SqlParameter("@email", email_input.Text));
-                command.Parameters.Add(new SqlParameter("@pw", pw_input.Text));
-                command.ExecuteNonQuery();
-
-                SqlDataReader reader;
-                reader = command.ExecuteReader();
-                string res = "";
-                while (reader.Read())
-                {
-                    res = res + reader.GetValue(0);
-                }
-                reader.Close();
-                MessageBox.Show(res);
-
-
+                res += reader.GetValue(0);
             }
+            MessageBox.Show(res);
 
             this.Hide();
             cnn.Close();
@@ -74,6 +57,11 @@ namespace stand_code
             this.Hide();
             MainForm form = new MainForm();
             form.Show();
+        }
+
+        private void firstname_input_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

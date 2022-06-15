@@ -5,7 +5,7 @@ create table utilizador(
 	FName				varchar(30)			not null,
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,
-	email				varchar(40)			not null,
+	email				varchar(40)			unique,
 	pw					varchar(20)			not null,
 	primary key (ID_utilizador)
 );
@@ -34,7 +34,7 @@ create table favourites(
 
 create table item (
 	ID					int					not null	primary key identity(1,1),
-	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)
+	ID_Anuncio			int					not null	foreign key references anuncio(ID_Anuncio)
 );
 
 create table peca(

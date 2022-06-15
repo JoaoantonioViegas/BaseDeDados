@@ -31,9 +31,11 @@ namespace stand_code
             if(Program.log_id != "")
             {
                 profile_button.Enabled = true;
+                add_anuncio_button.Enabled = true;
             } else
             {
                 profile_button.Enabled = false;
+                add_anuncio_button.Enabled = false;
             }
 
         }
@@ -94,6 +96,14 @@ namespace stand_code
             this.cnn.Close();
             ProfileForm form = new ProfileForm();
             this.Hide();
+            form.Show();
+        }
+
+        private void add_anuncio_button_Click(object sender, EventArgs e)
+        {
+            AddAdvertisementForm form = new AddAdvertisementForm();
+            this.Hide();
+            cnn.Close();
             form.Show();
         }
     }

@@ -40,6 +40,7 @@ namespace stand_code
             this.fuel_label = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.km_input = new System.Windows.Forms.TextBox();
+            this.add_anuncio_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.search_result_table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@ namespace stand_code
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(465, 40);
+            this.label1.Location = new System.Drawing.Point(16, 313);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 3;
@@ -84,7 +85,7 @@ namespace stand_code
             // 
             // search_input
             // 
-            this.search_input.Location = new System.Drawing.Point(526, 37);
+            this.search_input.Location = new System.Drawing.Point(77, 310);
             this.search_input.Name = "search_input";
             this.search_input.Size = new System.Drawing.Size(318, 20);
             this.search_input.TabIndex = 4;
@@ -92,7 +93,7 @@ namespace stand_code
             // 
             // search_button
             // 
-            this.search_button.Location = new System.Drawing.Point(896, 35);
+            this.search_button.Location = new System.Drawing.Point(447, 308);
             this.search_button.Name = "search_button";
             this.search_button.Size = new System.Drawing.Size(75, 23);
             this.search_button.TabIndex = 5;
@@ -103,7 +104,7 @@ namespace stand_code
             // search_result_table
             // 
             this.search_result_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.search_result_table.Location = new System.Drawing.Point(305, 317);
+            this.search_result_table.Location = new System.Drawing.Point(12, 484);
             this.search_result_table.Name = "search_result_table";
             this.search_result_table.Size = new System.Drawing.Size(904, 270);
             this.search_result_table.TabIndex = 6;
@@ -116,7 +117,7 @@ namespace stand_code
             "Eletrico",
             "Gasolina",
             "Gasoleo"});
-            this.filter_fuel.Location = new System.Drawing.Point(526, 115);
+            this.filter_fuel.Location = new System.Drawing.Point(77, 388);
             this.filter_fuel.Name = "filter_fuel";
             this.filter_fuel.Size = new System.Drawing.Size(121, 21);
             this.filter_fuel.TabIndex = 7;
@@ -125,7 +126,7 @@ namespace stand_code
             // fuel_label
             // 
             this.fuel_label.AutoSize = true;
-            this.fuel_label.Location = new System.Drawing.Point(465, 115);
+            this.fuel_label.Location = new System.Drawing.Point(16, 388);
             this.fuel_label.Name = "fuel_label";
             this.fuel_label.Size = new System.Drawing.Size(30, 13);
             this.fuel_label.TabIndex = 8;
@@ -135,7 +136,7 @@ namespace stand_code
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(465, 165);
+            this.label2.Location = new System.Drawing.Point(16, 438);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 9;
@@ -143,17 +144,28 @@ namespace stand_code
             // 
             // km_input
             // 
-            this.km_input.Location = new System.Drawing.Point(526, 165);
+            this.km_input.Location = new System.Drawing.Point(77, 438);
             this.km_input.Name = "km_input";
             this.km_input.Size = new System.Drawing.Size(121, 20);
             this.km_input.TabIndex = 10;
             this.km_input.TextChanged += new System.EventHandler(this.km_input_TextChanged);
+            // 
+            // add_anuncio_button
+            // 
+            this.add_anuncio_button.Location = new System.Drawing.Point(550, 30);
+            this.add_anuncio_button.Name = "add_anuncio_button";
+            this.add_anuncio_button.Size = new System.Drawing.Size(160, 44);
+            this.add_anuncio_button.TabIndex = 11;
+            this.add_anuncio_button.Text = "Add Advertisement";
+            this.add_anuncio_button.UseVisualStyleBackColor = true;
+            this.add_anuncio_button.Click += new System.EventHandler(this.add_anuncio_button_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1221, 766);
+            this.Controls.Add(this.add_anuncio_button);
             this.Controls.Add(this.km_input);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.fuel_label);
@@ -187,6 +199,7 @@ namespace stand_code
         private System.Windows.Forms.Label fuel_label;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox km_input;
+        private System.Windows.Forms.Button add_anuncio_button;
     }
 }
 

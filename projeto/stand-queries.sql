@@ -143,3 +143,33 @@ create procedure get_user_info
 as
 	select email, Fname, Lname from utilizador where ID_utilizador = @id;
 go
+
+-- criar anuncio de uma peça
+create procedure create_anuncio_peca
+	@seller_id as int,
+	@title as varchar(100),
+	@price as real,
+	@piece_name as varchar(30),
+	@piece_condition as varchar(10)
+as
+	insert into anuncio values(@seller_id, @title, @price);
+	
+	declare @last_index_anuncio as int;
+	select @last_index_anuncio = @@IDENTITY from anuncio;
+	insert into item values (@last_index_anuncio);
+	declare @last_index_item as int;
+	select @last_index_item = MAX(ID) from item;
+	insert into peca values (@last_index_item, @piece_name, @piece_condition);
+go
+
+drop procedure create_anuncio_peca;
+
+select * from anuncio;
+select * from item;
+select * from peca;
+
+select * from utilizador;
+delete from utilizador where ID_utilizador = 24;
+
+select MAX(ID_Anuncio) from anuncio;
+
