@@ -2,7 +2,6 @@
 use stand;
 create table utilizador(
 	ID_utilizador		int					not null	identity(1,1),
-
 	FName				varchar(30)			not null,
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,

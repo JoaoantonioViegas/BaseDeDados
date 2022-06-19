@@ -25,7 +25,7 @@ namespace stand_code
         private void Form1_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
 
@@ -67,12 +67,13 @@ namespace stand_code
         private void search_button_Click(object sender, EventArgs e)
         {
             SqlCommand cmd;
-
             cmd = new SqlCommand("search_km_fuel", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
+           
             cmd.Parameters.Add(new SqlParameter("@title", search_value));
             cmd.Parameters.Add(new SqlParameter("@fuel", fuel_value));
             cmd.Parameters.Add(new SqlParameter("@kms", km_value));
+
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(table);
@@ -177,6 +178,11 @@ namespace stand_code
             this.Hide();
             cnn.Close();
             form.Show();
+        }
+
+        private void search_result_table_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
