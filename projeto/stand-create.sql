@@ -5,7 +5,7 @@ create table utilizador(
 	FName				varchar(30)			not null,
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,
-	email				varchar(40)			unique,
+	email				varchar(40)			not null	unique,
 	pw					varchar(20)			not null,
 	primary key (ID_utilizador)
 );
