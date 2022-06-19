@@ -2,22 +2,21 @@
 use stand;
 create table utilizador(
 	ID_utilizador		int					not null	identity(1,1),
+
 	FName				varchar(30)			not null,
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,
-	email				varchar(40)			not null	unique,
-	pw					varchar(20)			not null,
-	primary key (ID_utilizador)
+	email				varchar(40)			unique,
+	pw					varchar(20)			not null,primary key (ID_utilizador),
+	NIF					varchar(9)			not null 
 );
 
 create table cliente(
-	ID_Cliente			int			not null primary key
-	foreign key references Utilizador(ID_utilizador)
+	ID_Cliente			int			not null primary key foreign key references Utilizador(ID_utilizador)
 );
 
 create table vendedor(
-	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador),
-	NIF					varchar(9)			not null primary key
+	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador)
 );
 
 create table anuncio(

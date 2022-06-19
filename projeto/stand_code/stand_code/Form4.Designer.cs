@@ -41,6 +41,8 @@ namespace stand_code
             this.cancel_button = new System.Windows.Forms.Button();
             this.tel_input = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.Nif_input = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +112,7 @@ namespace stand_code
             // 
             // register_button
             // 
-            this.register_button.Location = new System.Drawing.Point(39, 274);
+            this.register_button.Location = new System.Drawing.Point(29, 334);
             this.register_button.Name = "register_button";
             this.register_button.Size = new System.Drawing.Size(75, 23);
             this.register_button.TabIndex = 8;
@@ -120,7 +122,7 @@ namespace stand_code
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(201, 274);
+            this.cancel_button.Location = new System.Drawing.Point(191, 334);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 9;
@@ -144,11 +146,31 @@ namespace stand_code
             this.label5.TabIndex = 10;
             this.label5.Text = "Telephone:";
             // 
+            // Nif_input
+            // 
+            this.Nif_input.Location = new System.Drawing.Point(144, 279);
+            this.Nif_input.Name = "Nif_input";
+            this.Nif_input.Size = new System.Drawing.Size(132, 20);
+            this.Nif_input.TabIndex = 13;
+            this.Nif_input.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(54, 282);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Nif:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 539);
+            this.Controls.Add(this.Nif_input);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.tel_input);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cancel_button);
@@ -183,5 +205,7 @@ namespace stand_code
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.TextBox tel_input;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox Nif_input;
+        private System.Windows.Forms.Label label6;
     }
 }
