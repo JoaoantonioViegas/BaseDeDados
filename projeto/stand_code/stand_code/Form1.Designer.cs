@@ -126,6 +126,7 @@ namespace stand_code
             this.search_result_table.Name = "search_result_table";
             this.search_result_table.Size = new System.Drawing.Size(904, 270);
             this.search_result_table.TabIndex = 6;
+            this.search_result_table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.search_result_table_CellContentClick);
             // 
             // filter_fuel
             // 

@@ -42,9 +42,9 @@ where quilometros <= @input_km;
 /* ===== Procedures ===== */
 -- Filtrar an�ncios por kms, combustivel, titulo e marca
 create procedure search_km_fuel
-	@title as nvarchar(40),
-	@fuel as nvarchar(20),
-	@kms as int
+	@title as varchar(40),
+	@fuel as varchar(20),
+	@kms as varchar(20)
 as
 	declare @sql varchar(max);
 	set @sql = '
@@ -59,73 +59,34 @@ as
 	begin
 		set @sql = @sql + ' and (lower(Combustivel) = lower('''+@fuel+'''))'
 	end
-	if @kms is not null
+	if @kms != ''
 	begin
-		set @sql = @sql + ' and (quilometros < '+CONVERT(NVARCHAR(MAX), @kms)+')';
+		set @sql = @sql + ' and (quilometros < '+@kms+')';
 	end
 	exec(@sql)
 go
 
-select Titulo, preco, Marca, Modelo, Ano, Combustivel, quilometros, Matricula from anuncio join 
-			(item join 
-				(veiculo join veiculo_terrestre on ID_Veiculo=ID_Item)
-			on item.ID = veiculo.ID_Item)
-		on anuncio.ID_Anuncio = item.ID_Anuncio
-		where ((lower(Titulo) like '%' + lower('') + '%') or (lower(Marca) like '%' + lower('') + '%')) and (quilometros <100000);
-
-drop procedure search_km_fuel;
---filtrar anuncios de pe�as por titulo
-	select * from item
-	select * from peca
-
-	create procedure get_anouncemment_by_name
-		@title as varchar(40),
-		@price as real,
-		@condition as varchar(10)
-	as
-		if (@title != '' and @price != '' and @condition != '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (lower(Titulo) like '%' + lower(@title) + '%') and (Preco<@price) and (lower(Condicao) like '%' + lower(@condition) + '%');
-		end
-		else if (@title = '' and @price != '' and @condition != '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (Preco<@price) and (lower(Condicao) like '%' + lower(@condition) + '%');
-		end
-		else if (@title != '' and @price = '' and @condition != '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (lower(Titulo) like '%' + lower(@title) + '%') and (lower(Condicao) like '%' + lower(@condition) + '%');
-		end
-		else if (@title != '' and @price != '' and @condition = '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (lower(Titulo) like '%' + lower(@title) + '%') and (Preco<@price) ;
-		end
-		else if (@title = '' and @price = '' and @condition != '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (lower(Condicao) like '%' + lower(@condition) + '%');
-		end
-		else if (@title != '' and @price = '' and @condition = '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where (lower(Titulo) like '%' + lower(@title) + '%');
-		end
-		else if (@title = '' and @price != '' and @condition = '')
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-				where  (Preco<@price);
-		end
-		else
-		begin
-			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
-		end
-	go
-
-	exec get_anouncemment_by_name @title = '', @price = '1000', @condition = '';
-	drop procedure get_anouncemment_by_name
+--filtrar anuncios de pecas por titulo
+create procedure get_anouncemment_by_name
+	@title as varchar(40),
+	@price as varchar(20),
+	@condition as varchar(10)
+as
+	declare @sql varchar(MAX);
+	set @sql = '
+		select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+		where (lower(Titulo) like ''%'' + lower('''+@title+''') + ''%'')
+	'
+	if @price != ''
+	begin
+		 set @sql = @sql + 'and (Preco<' + @price + ')'
+	end
+	if @condition != ''
+	begin
+		set @sql = @sql + ' and (lower(Condicao) like ''%'' + lower('''+@condition+''') + ''%'')'
+	end
+	exec(@sql)
+go
 
 -- Recebe id do user e retorna uma tabela com os seus anuncios com veiculos terrestres
 create procedure get_anuncios_utilizador_veiculos_terrestres
@@ -181,7 +142,6 @@ as
 	select @r;
 go
 
-drop procedure create_user
 -- Login com email e password
 create procedure login_user
 	@email as varchar(40),
@@ -198,10 +158,6 @@ create procedure get_user_info
 as
 	select email, Fname, Lname from utilizador where ID_utilizador = @id;
 go
-
-select email, Fname, Lname from utilizador where ID_utilizador = 10;
-
-
 
 -- criar anuncio de uma pe�a
 create procedure create_anuncio_peca
@@ -226,14 +182,38 @@ go
 -- criar anuncio de um veiculo terrestre
 create procedure create_anuncio_terrestre
 	@seller_id as int,
+	@titulo as varchar(100),
+	@preco as real,
+	@matricula as varchar(9),
+	@modelo as varchar(40),
+	@ano as int,
+	@combustivel as varchar(20),
+	@marca as varchar(30),
+	@sub_modelo as varchar(30),
+	@segmento as varchar(20),
+	@kms as int,
+	@tipo_veiculo as varchar(20),
 
+	@response as varchar(50) output
 as
-go
+	begin try
+		insert into anuncio values (@seller_id, @titulo, @preco);
+	
+		declare @new_announce as int;
+		select @new_announce = @@IDENTITY from anuncio;
+		insert into item values (@new_announce);
 
-select * from anuncio;
-select * from item;
-select * from veiculo;
-select * from veiculo_terrestre;
+		declare @new_item as int;
+		select @new_item = @@IDENTITY from item;
+		insert into veiculo values (@new_item, @matricula, @modelo, @ano, @combustivel, @marca);
+
+		insert into veiculo_terrestre values (@new_item, @sub_modelo, @segmento, @kms, @tipo_veiculo);
+		set @response = 'Anúncio adicionado com sucesso';
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE()
+	end catch
+go
 
 -- update password do utilizador quando recebe email e password antiga
 create procedure update_user_password

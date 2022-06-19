@@ -27,3 +27,4 @@ C:\Users\joaoa\Desktop\Myrep\3ºano\2ºsemestre\BD\BaseDeDados\projeto\stand_cod
 C:\Users\joaoa\Desktop\Myrep\3ºano\2ºsemestre\BD\BaseDeDados\projeto\stand_code\stand_code\bin\Debug\stand_code.exe
 C:\Users\joaoa\Desktop\Myrep\3ºano\2ºsemestre\BD\BaseDeDados\projeto\stand_code\stand_code\bin\Debug\stand_code.pdb
 C:\Users\joaoa\Desktop\Myrep\3ºano\2ºsemestre\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.Form6.resources
+C:\Users\Utilizador\OneDrive\Ambiente de Trabalho\BD\BaseDeDados\projeto\stand_code\stand_code\obj\Debug\stand_code.Form6.resources
