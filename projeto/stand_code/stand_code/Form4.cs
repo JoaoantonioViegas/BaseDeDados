@@ -22,7 +22,7 @@ namespace stand_code
         private void RegisterForm_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
+            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
         }
@@ -36,6 +36,7 @@ namespace stand_code
             cmd.Parameters.Add(new SqlParameter("@tel", tel_input.Text));
             cmd.Parameters.Add(new SqlParameter("@email", email_input.Text));
             cmd.Parameters.Add(new SqlParameter("@pw", pw_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@NIF", Nif_input.Text));
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
             string res = "";
@@ -60,6 +61,16 @@ namespace stand_code
         }
 
         private void firstname_input_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

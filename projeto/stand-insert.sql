@@ -1,17 +1,17 @@
 use stand;
 /* Insert data into the tables */
 --insert diferent data in the table
-insert into utilizador values   ('João','Silva',912345678,'joao@gmail.com', 'pass1'),
-                                ('Maria','Santos',923456781,'maria@gmail.com', 'pass2'),
-                                ('Pedro','Souza',934567812,'pedro@gmail.com', 'pass3'),
-                                ('José','Pereira',945678913,'jose@gmail.com', 'pass4'),
-                                ('João','Souza',955678914,'souza@gmail.com', 'pass5'),
-                                ('Maria','Pereira',965678915,'pereira@gmail.com', 'pass6'),
-                                ('Pedro','Pereira',975678916,'pp@gmail.com', 'pass7'),
-                                ('José','Santos',985678917,'js@gmail.com', 'pass8'),
-                                ('João','Pereira',995678918,'jp@gmail.com', 'pass9'),
-                                ('Hugo','Santos',100567891,'hs@gmail.com', 'pass10'),
-								('Francisco', 'Lopes', 947234552, 'bombaatomicz@toohottohandle.com', 'pass11');
+insert into utilizador values   ('João','Silva',912345678,'joao@gmail.com', 'pass1',1273463723),
+                                ('Maria','Santos',923456781,'maria@gmail.com', 'pass2',123678934),
+                                ('Pedro','Souza',934567812,'pedro@gmail.com', 'pass3',098902345),
+                                ('José','Pereira',945678913,'jose@gmail.com', 'pass4',126354321),
+                                ('João','Souza',955678914,'souza@gmail.com', 'pass5',765409823),
+                                ('Maria','Pereira',965678915,'pereira@gmail.com', 'pass6',092312374),
+                                ('Pedro','Pereira',975678916,'pp@gmail.com', 'pass7',567890123),
+                                ('José','Santos',985678917,'js@gmail.com', 'pass8',456789012),
+                                ('João','Pereira',995678918,'jp@gmail.com', 'pass9',345678901),
+                                ('Hugo','Santos',100567891,'hs@gmail.com', 'pass10',234567890),
+								('Francisco', 'Lopes', 947234552, 'bombaatomicz@toohottohandle.com', 'pass11',123456789);
 
 insert into cliente values		(1),
 								(2),
@@ -19,11 +19,11 @@ insert into cliente values		(1),
 								(4),
 								(5);
 
-insert into vendedor values		(10,123456789),
-								(9,234567890),
-								(8,345678901),
-								(7,456789012),
-								(6,567890123);
+insert into vendedor values		(10),
+								(9),
+								(8),
+								(7),
+								(6);
 
 insert into anuncio values  (10,'Titulo1',1000.00),
                             (7,'Titulo2',20000.00),

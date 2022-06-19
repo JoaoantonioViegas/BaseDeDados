@@ -84,6 +84,59 @@ as
 	end
 go
 
+--filtrar anuncios de peças por titulo
+	select * from item
+	select * from peca
+
+	create procedure get_anouncemment_by_name
+		@title as varchar(40),
+		@price as real,
+		@condition as varchar(10)
+	as
+		if (@title != '' and @price != '' and @condition != '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (lower(Titulo) like '%' + lower(@title) + '%') and (Preco<@price) and (lower(Condicao) like '%' + lower(@condition) + '%');
+		end
+		else if (@title = '' and @price != '' and @condition != '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (Preco<@price) and (lower(Condicao) like '%' + lower(@condition) + '%');
+		end
+		else if (@title != '' and @price = '' and @condition != '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (lower(Titulo) like '%' + lower(@title) + '%') and (lower(Condicao) like '%' + lower(@condition) + '%');
+		end
+		else if (@title != '' and @price != '' and @condition = '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (lower(Titulo) like '%' + lower(@title) + '%') and (Preco<@price) ;
+		end
+		else if (@title = '' and @price = '' and @condition != '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (lower(Condicao) like '%' + lower(@condition) + '%');
+		end
+		else if (@title != '' and @price = '' and @condition = '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where (lower(Titulo) like '%' + lower(@title) + '%');
+		end
+		else if (@title = '' and @price != '' and @condition = '')
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+				where  (Preco<@price);
+		end
+		else
+		begin
+			select * from anuncio join (item join peca on ID=ID_Item) on anuncio.ID_Anuncio=item.ID_Anuncio
+		end
+	go
+
+	exec get_anouncemment_by_name @title = '', @price = '1000', @condition = '';
+	drop procedure get_anouncemment_by_name
+
 -- Recebe id do user e retorna uma tabela com os seus anuncios com veiculos terrestres
 create procedure get_anuncios_utilizador_veiculos_terrestres
 	@id as int
@@ -115,11 +168,12 @@ create procedure create_user
 	@lname as varchar(30),
 	@tel as decimal(9),
 	@email as varchar(40),
-	@pw as varchar(20)
+	@pw as varchar(20),
+	@NIF as varchar(9)
 as
 	declare @r varchar(100)
 	insert into utilizador
-	values (@fname, @lname, @tel, @email, @pw);
+	values (@fname, @lname, @tel, @email, @pw,@NIF);
 	if(@@ROWCOUNT = 1)
 		set @r = '[REGISTER]: Success';
 	else
@@ -127,6 +181,7 @@ as
 	select @r;
 go
 
+drop procedure create_user
 -- Login com email e password
 create procedure login_user
 	@email as varchar(40),
@@ -144,6 +199,10 @@ as
 	select email, Fname, Lname from utilizador where ID_utilizador = @id;
 go
 
+select email, Fname, Lname from utilizador where ID_utilizador = 10;
+
+
+
 -- criar anuncio de uma peça
 create procedure create_anuncio_peca
 	@seller_id as int,
@@ -152,6 +211,7 @@ create procedure create_anuncio_peca
 	@piece_name as varchar(30),
 	@piece_condition as varchar(10)
 as
+begin
 	insert into anuncio values(@seller_id, @title, @price);
 	
 	declare @last_index_anuncio as int;
@@ -160,9 +220,17 @@ as
 	declare @last_index_item as int;
 	select @last_index_item = MAX(ID) from item;
 	insert into peca values (@last_index_item, @piece_name, @piece_condition);
+end
 go
 
-drop procedure create_anuncio_peca;
+--criar anuncio de um carro
+
+
+
+insert into anuncio values(69, 1, 'anuncio do crl', 12);
+
+select * from anuncio;
+
 
 select * from anuncio;
 select * from item;

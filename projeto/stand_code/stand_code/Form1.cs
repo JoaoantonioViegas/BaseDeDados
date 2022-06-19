@@ -17,6 +17,7 @@ namespace stand_code
         string fuel_value = "";
         string km_value = "";
         string search_value = "";
+        string condition_value = "";
         public MainForm()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace stand_code
         private void Form1_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
+            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
 
@@ -32,10 +33,12 @@ namespace stand_code
             {
                 profile_button.Enabled = true;
                 add_anuncio_button.Enabled = true;
+                add_car.Enabled = true;
             } else
             {
                 profile_button.Enabled = false;
                 add_anuncio_button.Enabled = false;
+                add_car.Enabled = false;
             }
 
         }
@@ -102,6 +105,75 @@ namespace stand_code
         private void add_anuncio_button_Click(object sender, EventArgs e)
         {
             AddAdvertisementForm form = new AddAdvertisementForm();
+            this.Hide();
+            cnn.Close();
+            form.Show();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void search_peca_input_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd;
+
+            cmd = new SqlCommand("get_anouncemment_by_name", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@title", search_peca_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@price", preco_input.Text));
+            cmd.Parameters.Add(new SqlParameter("@condition", condition_input.Text));
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(table);
+            table_pecas.DataSource = table;
+        }
+
+        private void preco_input_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void condition_input_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.condition_value = condition_input.SelectedItem.ToString();
+        }
+
+        private void add_car_Click_1(object sender, EventArgs e)
+        {
+            Form6 form = new Form6();
             this.Hide();
             cnn.Close();
             form.Show();
