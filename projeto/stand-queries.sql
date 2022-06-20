@@ -165,18 +165,24 @@ create procedure create_anuncio_peca
 	@title as varchar(100),
 	@price as real,
 	@piece_name as varchar(30),
-	@piece_condition as varchar(10)
-as
-begin
-	insert into anuncio values(@seller_id, @title, @price);
+	@piece_condition as varchar(10),
 	
-	declare @last_index_anuncio as int;
-	select @last_index_anuncio = @@IDENTITY from anuncio;
-	insert into item values (@last_index_anuncio);
-	declare @last_index_item as int;
-	select @last_index_item = MAX(ID) from item;
-	insert into peca values (@last_index_item, @piece_name, @piece_condition);
-end
+	@response as varchar(50) output
+as
+	begin try
+		insert into anuncio values(@seller_id, @title, @price);
+	
+		declare @last_index_anuncio as int;
+		select @last_index_anuncio = @@IDENTITY from anuncio;
+		insert into item values (@last_index_anuncio);
+		declare @last_index_item as int;
+		select @last_index_item = MAX(ID) from item;
+		insert into peca values (@last_index_item, @piece_name, @piece_condition);
+		set @response = 'Anúncio criado com sucesso.';
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE();
+	end catch 
 go
 
 -- criar anuncio de um veiculo terrestre
