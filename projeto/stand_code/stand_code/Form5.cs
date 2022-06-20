@@ -26,7 +26,7 @@ namespace stand_code
         private void AddAdvertisementForm_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
         }
@@ -54,6 +54,7 @@ namespace stand_code
         private void create_ad_button_Click(object sender, EventArgs e)
         {
             int nr_rows;
+            string response = "";
             SqlCommand cmd = new SqlCommand("create_anuncio_peca", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@seller_id", Program.log_id));
@@ -61,6 +62,7 @@ namespace stand_code
             cmd.Parameters.Add(new SqlParameter("@price", this.price));
             cmd.Parameters.Add(new SqlParameter("@piece_name", this.piece_name));
             cmd.Parameters.Add(new SqlParameter("@piece_condition", this.piece_condition));
+            cmd.Parameters.Add(new SqlParameter("@response", response));
 
 
             nr_rows = cmd.ExecuteNonQuery();
@@ -72,6 +74,7 @@ namespace stand_code
             {
                 MessageBox.Show("Error while creating the advertisement!");
             }
+
             cnn.Close();
             this.Hide();
             MainForm form = new MainForm();

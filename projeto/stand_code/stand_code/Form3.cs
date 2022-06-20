@@ -25,7 +25,7 @@ namespace stand_code
         private void ProfileForm_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
             SqlCommand cmd = new SqlCommand("get_user_info", cnn);

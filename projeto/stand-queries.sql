@@ -159,7 +159,7 @@ as
 	select email, Fname, Lname from utilizador where ID_utilizador = @id;
 go
 
--- criar anuncio de uma pe�a
+-- criar anuncio de uma peca
 create procedure create_anuncio_peca
 	@seller_id as int,
 	@title as varchar(100),
@@ -248,7 +248,7 @@ as
 go
 
 -- update do titulo e do preco quando recebe id do anuncio
-create procedure update_anuncio_peca
+create procedure update_anuncio
 	@id	as int,
 	@new_title as varchar(100),
 	@new_price as real,
@@ -271,3 +271,4 @@ as
 		set @response = ERROR_MESSAGE()
 	end catch
 go
+
