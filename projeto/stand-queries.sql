@@ -41,10 +41,11 @@ where quilometros <= @input_km;
 
 /* ===== Procedures ===== */
 -- Filtrar an�ncios por kms, combustivel, titulo e marca
-create procedure search_km_fuel
+create procedure search_km_fuel_price
 	@title as varchar(40),
 	@fuel as varchar(20),
-	@kms as varchar(20)
+	@kms as varchar(20),
+	@price as varchar(20)
 as
 	declare @sql varchar(max);
 	set @sql = '
@@ -61,10 +62,16 @@ as
 	end
 	if @kms != ''
 	begin
-		set @sql = @sql + ' and (quilometros < '+@kms+')';
+		set @sql = @sql + ' and (quilometros < '+@kms+')'
+	end
+	if @price != ''
+	begin
+		set @sql = @sql + ' and ( Preco < ' +@price+')'
 	end
 	exec(@sql)
 go
+
+drop procedure search_km_fuel;
 
 --filtrar anuncios de pecas por titulo
 create procedure get_anouncemment_by_name

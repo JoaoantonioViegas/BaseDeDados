@@ -67,12 +67,13 @@ namespace stand_code
         private void search_button_Click(object sender, EventArgs e)
         {
             SqlCommand cmd;
-            cmd = new SqlCommand("search_km_fuel", cnn);
+            cmd = new SqlCommand("search_km_fuel_price", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
            
             cmd.Parameters.Add(new SqlParameter("@title", search_value));
             cmd.Parameters.Add(new SqlParameter("@fuel", fuel_value));
             cmd.Parameters.Add(new SqlParameter("@kms", km_value));
+            cmd.Parameters.Add(new SqlParameter("@price", preco_veiculo_input.Text));
 
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);

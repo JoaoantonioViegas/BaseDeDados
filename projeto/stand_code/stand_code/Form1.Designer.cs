@@ -43,7 +43,7 @@ namespace stand_code
             this.add_anuncio_button = new System.Windows.Forms.Button();
             this.Veiculos = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.preco_veiculo_input = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.condition_input = new System.Windows.Forms.ComboBox();
@@ -190,7 +190,7 @@ namespace stand_code
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.preco_veiculo_input);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.search_button);
@@ -209,13 +209,13 @@ namespace stand_code
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // textBox1
+            // preco_veiculo_input
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 150);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.preco_veiculo_input.Location = new System.Drawing.Point(98, 150);
+            this.preco_veiculo_input.Name = "preco_veiculo_input";
+            this.preco_veiculo_input.Size = new System.Drawing.Size(121, 20);
+            this.preco_veiculo_input.TabIndex = 12;
+            this.preco_veiculo_input.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label4
             // 
@@ -378,7 +378,7 @@ namespace stand_code
         private System.Windows.Forms.DataGridView table_pecas;
         private System.Windows.Forms.TextBox search_peca_input;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox preco_veiculo_input;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox preco_input;
         private System.Windows.Forms.ComboBox condition_input;
