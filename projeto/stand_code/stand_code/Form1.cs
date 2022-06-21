@@ -152,7 +152,7 @@ namespace stand_code
         {
             SqlCommand cmd;
 
-            cmd = new SqlCommand("get_anouncemment_by_name", cnn);
+            cmd = new SqlCommand("search_piece_title_price_cond", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@title", search_peca_input.Text));
             cmd.Parameters.Add(new SqlParameter("@price", preco_input.Text));
