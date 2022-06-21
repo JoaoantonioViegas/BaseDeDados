@@ -210,6 +210,8 @@ create procedure create_anuncio_terrestre
 	@response as varchar(50) output
 as
 	begin try
+	if (@seller_id!='' and @titulo!='' and @preco!='' and @matricula!='' and @modelo!='' and @ano!='' and @combustivel!='' and @marca!='' and @sub_modelo!='' and @segmento!='' and @kms!='' and @tipo_veiculo!='') 
+		begin
 		insert into anuncio values (@seller_id, @titulo, @preco);
 	
 		declare @new_announce as int;
@@ -221,7 +223,12 @@ as
 		insert into veiculo values (@new_item, @matricula, @modelo, @ano, @combustivel, @marca);
 
 		insert into veiculo_terrestre values (@new_item, @sub_modelo, @segmento, @kms, @tipo_veiculo);
-		set @response = 'Anúncio adicionado com sucesso';
+		set @response = 'Announcemment added sucessfully';
+		end
+	else
+		begin
+			set @response = 'Please fill all the fields';
+		end
 	end try
 	begin catch
 		set @response = ERROR_MESSAGE()
@@ -279,3 +286,36 @@ as
 	end catch
 go
 
+
+/* ===== DELETES ===== */
+
+create procedure delete_ad
+	@id_ad as int,
+	@response as varchar(50) output
+as
+	begin try
+		print('aqui1')
+		if exists(select * from anuncio where ID_Anuncio=@id_ad)
+		begin 
+			print('aqui2');
+			delete from item where ID_Anuncio = 1;
+
+			set @response = 'Success'
+		end
+		else
+			set @response = 'Erro ao eliminar anuncio'
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE()
+	end catch
+go
+
+select * from anuncio;
+select * from item;
+select * from veiculo;
+select * from peca;
+select * from favourites;
+
+exec delete_ad @id_ad=1, @response='';
+
+drop procedure delete_ad

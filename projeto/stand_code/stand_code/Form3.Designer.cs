@@ -118,7 +118,7 @@ namespace stand_code
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 8;
-            this.cancel_button.Text = "Cancel";
+            this.cancel_button.Text = "Back";
             this.cancel_button.UseVisualStyleBackColor = true;
             this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
