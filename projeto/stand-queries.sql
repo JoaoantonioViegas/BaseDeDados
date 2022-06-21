@@ -71,10 +71,8 @@ as
 	exec(@sql)
 go
 
-drop procedure search_km_fuel;
-
---filtrar anuncios de pecas por titulo
-create procedure get_anouncemment_by_name
+--filtrar anuncios de pecas por titulo, preço e condição
+create procedure search_piece_title_price_cond
 	@title as varchar(40),
 	@price as varchar(20),
 	@condition as varchar(10)
@@ -122,11 +120,31 @@ go
 -- Login com email e password
 create procedure login_user
 	@email as varchar(40),
-	@password as varchar(20)
+	@password as varchar(20),
+
+	@response as varchar(20) output
 as
-	select user1.ID_utilizador from utilizador as user1 
-	join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
-	where user2.email=@email and user2.pw=@password;
+	begin try
+		select user1.ID_utilizador from utilizador as user1 
+		join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
+		where user2.email=@email and user2.pw=@password;
+		
+		if exists(select user1.ID_utilizador from utilizador as user1 
+					join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
+					where user2.email=@email and user2.pw=@password)
+		begin
+			select @response = user1.ID_utilizador from utilizador as user1 
+					join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
+					where user2.email=@email and user2.pw=@password;
+		end
+		else
+		begin
+			set @response = 'Credenciais incorretas.';
+		end
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE();
+	end catch
 go
 
 /* ===== UPDATES ===== */
@@ -150,20 +168,56 @@ as
 go
 
 -- Login com email e password
+--- Retorna mensagem de erro ser credenciais inválidas; caso contrário retorna id_utilizador
 create procedure login_user
 	@email as varchar(40),
-	@password as varchar(20)
+	@password as varchar(20),
+
+	@response as varchar(40) output
 as
-	select user1.ID_utilizador from utilizador as user1 
-	join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
-	where user2.email=@email and user2.pw=@password;
+	begin try
+		if exists( select ID_utilizador from utilizador where email=@email)
+		begin
+			if exists( select ID_utilizador from utilizador where pw=@password)
+			begin
+				select user1.ID_utilizador from utilizador as user1 
+				join utilizador as user2 on user1.ID_utilizador=user2.ID_utilizador 
+				where user2.email=@email and user2.pw=@password;
+			end
+			else
+			begin
+				set @response = 'Password inválida';
+			end
+		end
+		else
+		begin
+			set @response = 'Email inválido';
+		end
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE();
+	end catch
 go
 
 -- Receives user id and retrieves user info
 create procedure get_user_info
-	@id	as int
+	@id	as int,
+
+	@response as varchar(40) output
 as
-	select email, Fname, Lname from utilizador where ID_utilizador = @id;
+	begin try
+		if exists( select email from utilizador where ID_utilizador = @id)
+		begin
+			select email, Fname, Lname from utilizador where ID_utilizador = @id;
+		end
+		else
+		begin
+			set @response = 'No user with id: ' + convert(varchar(max), @id);
+		end
+	end try
+	begin catch
+		set @response = ERROR_MESSAGE();
+	end catch
 go
 
 -- criar anuncio de uma peca
@@ -191,6 +245,13 @@ as
 		set @response = ERROR_MESSAGE();
 	end catch 
 go
+
+select * from utilizador;
+select * from veiculo;
+select * from veiculo_terrestre;
+
+exec create_anuncio_terrestre @seller_id=2, @titulo='tituloooo', @preco=999, @matricula='AABBAA', @modelo='modelao', @ano=2022, @combustivel='Eletrico',
+@marca='marcona', @sub_modelo='sub-modelao', @segmento='Cabrio', @kms=100000, @tipo_veiculo='Carrao', @response='';
 
 -- criar anuncio de um veiculo terrestre
 create procedure create_anuncio_terrestre
@@ -279,3 +340,69 @@ as
 	end catch
 go
 
+/* === DELETES === */
+create procedure delete_user
+	@id as int,
+
+	@response as varchar(30) output
+as
+
+	if exists(select * from utilizador where ID_utilizador=@id)
+	begin
+		if exists(select * from vendedor where ID_Vendedor=@id)
+		begin
+			delete from vendedor where ID_Vendedor=@id;
+		end
+		delete from favourites where ID_Client = @id;
+		delete from utilizador where ID_utilizador = @id;
+		set @response = 'Utilizador removido';
+	end
+	else
+	begin
+		set @response = 'Utilizador não existe';
+	end
+go
+
+create procedure delete_anuncio
+	@id_anuncio as int
+as
+	if exists( select * from anuncio where ID_Anuncio = @id_anuncio)
+	begin
+
+		if exists( select * from favourites where ID_Anuncio = @id_anuncio )
+		begin
+			delete from favourites where ID_Anuncio = @id_anuncio;
+		end
+
+		declare @id_item as int;
+		select @id_item = ID from item join anuncio on item.ID_Anuncio = anuncio.ID_Anuncio where item.ID_Anuncio = @id_anuncio;
+		if exists( select * from veiculo_terrestre where ID_Veiculo = @id_anuncio )
+		begin
+			delete from veiculo_terrestre where ID_Veiculo = @id_anuncio;
+		end
+		if exists( select * from veiculo_aquatico where ID_Veiculo = @id_anuncio )
+		begin
+			delete from veiculo_terrestre where ID_Veiculo = @id_anuncio;
+		end
+		if exists( select * from veiculo where ID_Item = @id_item )
+		begin
+			delete from veiculo where ID_Item = @id_item;
+		end
+
+		if exists( select * from peca where ID_Item = @id_item )
+		begin
+			if exists( select * from categoria where ID_Peca = @id_item)
+			begin
+				delete from categoria where ID_Peca = @id_item;
+			end
+			delete from peca where ID_Item = @id_item;
+		end
+
+		if exists( select * from item where ID_Anuncio = @id_anuncio)
+		begin
+			delete from item where ID_Anuncio = @id_anuncio;
+		end
+
+		delete from anuncio where ID_Anuncio = @id_anuncio;
+	end
+go

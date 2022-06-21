@@ -12,3 +12,16 @@ as
 		INSERT INTO vendedor(ID_Vendedor) VALUES (@added_seller);
 	end
 go
+
+-- quando um anuncio é eliminado e o utilizador nao tem mais anuncios, entao é retirado da tabela de vendedores
+create trigger remove_seller on anuncio
+after delete
+as
+	declare @removed_seller as int;
+	select @removed_seller=ID_Vendedor from deleted;
+
+	if not exists( select * from anuncio where ID_Vendedor = @removed_seller )
+	begin
+		delete from vendedor where ID_Vendedor = @removed_seller;
+	end
+go

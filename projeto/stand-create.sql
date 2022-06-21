@@ -6,12 +6,13 @@ create table utilizador(
 	LName				varchar(30)			not null,
 	Telefone			decimal(9)			not null,
 	email				varchar(40)			unique,
-	pw					varchar(20)			not null,primary key (ID_utilizador),
-	NIF					varchar(9)			not null 
+	pw					varchar(20)			not null,
+	NIF					varchar(9)			not null,
+	primary key (ID_utilizador)
 );
 
 create table cliente(
-	ID_Cliente			int			not null primary key foreign key references Utilizador(ID_utilizador)
+	ID_Cliente			int			not null primary key foreign key references Utilizador(ID_utilizador)	on delete cascade
 );
 
 create table vendedor(
@@ -20,29 +21,33 @@ create table vendedor(
 
 create table anuncio(
 	ID_Anuncio			int			not null primary key identity(1,1),
-	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador),
+	ID_Vendedor			int			not null foreign key references Utilizador(ID_utilizador)		on delete cascade,
 	Titulo				varchar(100),
-	Preco				real
+	Preco				real,
 );
+
+create nonclustered index anuncioVendedorIdIndex on anuncio(ID_Vendedor);
+
+select * from anuncio;
 
 create table favourites(
 	ID_Client			int					not null foreign key references cliente(ID_Cliente),
-	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)
+	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)		on delete cascade
 );
 
 create table item (
 	ID					int					not null	primary key identity(1,1),
-	ID_Anuncio			int					not null	foreign key references anuncio(ID_Anuncio)
+	ID_Anuncio			int					not null	foreign key references anuncio(ID_Anuncio)	on delete cascade
 );
 
 create table peca(
-	ID_Item				int					not null	primary key	foreign key references Item(ID),
+	ID_Item				int					not null	primary key	foreign key references Item(ID) on delete cascade,
 	Nome				varchar(30)			not null,
 	Condicao			varchar(10)			not null	check(Condicao = 'Usado' or Condicao='Novo')
 );
 
 create table categoria(
-	ID_Peca				int					not null	foreign key references Peca(ID_Item),
+	ID_Peca				int					not null	foreign key references Peca(ID_Item)		on delete cascade,
 	Nome				varchar(20)			not null	check(Nome = 'Interiores' or Nome = 'Acessorios' or Nome = 'Suspensao' or Nome = 'Iluminacao' or Nome = 'Carrocaria' or Nome = 'Caixa Velocidades'),
 );
 
@@ -52,7 +57,7 @@ create table categoria(
 --);
 
 create table veiculo(
-	ID_Item				int					not null	primary key	foreign key references Item(ID),
+	ID_Item				int					not null	primary key	foreign key references Item(ID)		on delete cascade,
 	Matricula			varchar(6)			not null,
 	Modelo				varchar(20)			not null,
 	Ano					int					not null,
@@ -61,7 +66,7 @@ create table veiculo(
 );
 
 create table veiculo_terrestre (
-	ID_Veiculo			int					foreign key references Veiculo(ID_Item),
+	ID_Veiculo			int					foreign key references Veiculo(ID_Item)		on delete cascade,
 	sub_modelo			varchar(30),		
 	segmento			varchar(30)			not null,	--citadino, coupe etc etc
 	quilometros			int					not null,
