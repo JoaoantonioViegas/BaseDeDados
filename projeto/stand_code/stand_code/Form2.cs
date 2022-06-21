@@ -55,10 +55,15 @@ namespace stand_code
         {
             SqlCommand cmd;
             SqlDataReader reader;
+            string response = "";
             cmd = new SqlCommand("login_user", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@email", this.email);
-            cmd.Parameters.Add("@password", this.password);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 40).Value = this.email;
+            cmd.Parameters.Add("@password", SqlDbType.VarChar, 20).Value = this.password;
+            cmd.Parameters.Add("@response", SqlDbType.VarChar, 50);
+            cmd.Parameters["@response"].Direction = ParameterDirection.Output;
+
+
 
             reader = cmd.ExecuteReader();
             string res = "";

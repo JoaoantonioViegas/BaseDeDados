@@ -57,28 +57,35 @@ namespace stand_code
             string response = "";
             SqlCommand cmd = new SqlCommand("create_anuncio_peca", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@seller_id", Program.log_id));
-            cmd.Parameters.Add(new SqlParameter("@title", this.title));
-            cmd.Parameters.Add(new SqlParameter("@price", this.price));
-            cmd.Parameters.Add(new SqlParameter("@piece_name", this.piece_name));
-            cmd.Parameters.Add(new SqlParameter("@piece_condition", this.piece_condition));
-            cmd.Parameters.Add(new SqlParameter("@response", response));
+            cmd.Parameters.Add("@seller_id", SqlDbType.Int).Value = Program.log_id;
+            cmd.Parameters.Add("@title", SqlDbType.VarChar,100).Value = this.title;
+            cmd.Parameters.Add("@price", SqlDbType.Real).Value = this.price;
+            cmd.Parameters.Add("@piece_name", SqlDbType.VarChar,30).Value = this.piece_name;
+            cmd.Parameters.Add("@piece_condition", SqlDbType.VarChar,10).Value = this.piece_condition;
+            cmd.Parameters.Add("@categoria", SqlDbType.VarChar, 50).Value = this.categoria_input.Text;
+            cmd.Parameters.Add("@response", SqlDbType.VarChar, 50);
+            cmd.Parameters["@response"].Direction = ParameterDirection.Output;
 
 
             nr_rows = cmd.ExecuteNonQuery();
-
-            if(nr_rows > 0)
+            string msg = cmd.Parameters["@response"].Value.ToString();
+            MessageBox.Show(msg);
+            if (nr_rows > 0)
             {
-                MessageBox.Show("Advertised successfully created!");
-            } else
-            {
-                MessageBox.Show("Error while creating the advertisement!");
+                //MessageBox.Show("Advertised successfully created!");
+                MainForm form = new MainForm();
+                this.Hide();
+                form.Show();
             }
+            else
+            {
+                //MessageBox.Show("Error while creating the advertisement!");
+            }
+        }
 
-            cnn.Close();
-            this.Hide();
-            MainForm form = new MainForm();
-            form.Show();
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

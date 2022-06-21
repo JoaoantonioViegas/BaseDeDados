@@ -38,6 +38,8 @@ namespace stand_code
             this.piece_condition_input = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.create_ad_button = new System.Windows.Forms.Button();
+            this.categoria_input = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -122,11 +124,30 @@ namespace stand_code
             this.create_ad_button.UseVisualStyleBackColor = true;
             this.create_ad_button.Click += new System.EventHandler(this.create_ad_button_Click);
             // 
+            // categoria_input
+            // 
+            this.categoria_input.Location = new System.Drawing.Point(115, 270);
+            this.categoria_input.Name = "categoria_input";
+            this.categoria_input.Size = new System.Drawing.Size(202, 20);
+            this.categoria_input.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 273);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Piece Category:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // AddAdvertisementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 600);
+            this.Controls.Add(this.categoria_input);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.create_ad_button);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.piece_condition_input);
@@ -155,5 +176,7 @@ namespace stand_code
         private System.Windows.Forms.ComboBox piece_condition_input;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button create_ad_button;
+        private System.Windows.Forms.TextBox categoria_input;
+        private System.Windows.Forms.Label label5;
     }
 }

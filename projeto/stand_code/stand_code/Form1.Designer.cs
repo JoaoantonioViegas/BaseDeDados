@@ -55,6 +55,10 @@ namespace stand_code
             this.search_peca_input = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.add_car = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.id_anuncio_input = new System.Windows.Forms.TextBox();
+            this.add_favourites_button = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.search_result_table)).BeginInit();
             this.Veiculos.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -185,7 +189,7 @@ namespace stand_code
             this.Veiculos.Location = new System.Drawing.Point(19, 89);
             this.Veiculos.Name = "Veiculos";
             this.Veiculos.SelectedIndex = 0;
-            this.Veiculos.Size = new System.Drawing.Size(1111, 531);
+            this.Veiculos.Size = new System.Drawing.Size(1046, 531);
             this.Veiculos.TabIndex = 12;
             // 
             // tabPage1
@@ -203,7 +207,7 @@ namespace stand_code
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1103, 505);
+            this.tabPage1.Size = new System.Drawing.Size(1038, 505);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Veiculo";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -331,11 +335,50 @@ namespace stand_code
             this.add_car.UseVisualStyleBackColor = true;
             this.add_car.Click += new System.EventHandler(this.add_car_Click_1);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1169, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "ID Advertisement:";
+            // 
+            // id_anuncio_input
+            // 
+            this.id_anuncio_input.Location = new System.Drawing.Point(1280, 147);
+            this.id_anuncio_input.Name = "id_anuncio_input";
+            this.id_anuncio_input.Size = new System.Drawing.Size(100, 20);
+            this.id_anuncio_input.TabIndex = 15;
+            // 
+            // add_favourites_button
+            // 
+            this.add_favourites_button.Location = new System.Drawing.Point(1233, 210);
+            this.add_favourites_button.Name = "add_favourites_button";
+            this.add_favourites_button.Size = new System.Drawing.Size(164, 67);
+            this.add_favourites_button.TabIndex = 16;
+            this.add_favourites_button.Text = "Add to favourites";
+            this.add_favourites_button.UseVisualStyleBackColor = true;
+            this.add_favourites_button.Click += new System.EventHandler(this.add_favourites_button_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1277, 89);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(90, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Add to Favourites";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1221, 766);
+            this.ClientSize = new System.Drawing.Size(1536, 766);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.add_favourites_button);
+            this.Controls.Add(this.id_anuncio_input);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.add_car);
             this.Controls.Add(this.Veiculos);
             this.Controls.Add(this.add_anuncio_button);
@@ -353,6 +396,7 @@ namespace stand_code
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table_pecas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -384,6 +428,10 @@ namespace stand_code
         private System.Windows.Forms.ComboBox condition_input;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button add_car;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox id_anuncio_input;
+        private System.Windows.Forms.Button add_favourites_button;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -34,11 +34,13 @@ namespace stand_code
                 profile_button.Enabled = true;
                 add_anuncio_button.Enabled = true;
                 add_car.Enabled = true;
+                add_favourites_button.Enabled = true;
             } else
             {
                 profile_button.Enabled = false;
                 add_anuncio_button.Enabled = false;
                 add_car.Enabled = false;
+                add_favourites_button.Enabled = false;
             }
 
         }
@@ -184,6 +186,26 @@ namespace stand_code
         private void search_result_table_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void add_favourites_button_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd1 = new SqlCommand("add_to_favourties", cnn);
+            cmd1.CommandType = CommandType.StoredProcedure;
+            cmd1.Parameters.Add("@id_anuncio", int.Parse(id_anuncio_input.Text));
+            cmd1.Parameters.Add("@id_client", Program.log_id);
+               
+            cmd1.Parameters.Add("@response", SqlDbType.VarChar, 50);
+            cmd1.Parameters["@response"].Direction = ParameterDirection.Output;
+
+            cmd1.ExecuteNonQuery();
+            string msg = cmd1.Parameters["@response"].Value.ToString();
+            MessageBox.Show(msg);
+
+            this.Hide();
+            cnn.Close();
+            MainForm form = new MainForm();
+            form.Show();
         }
     }
 }

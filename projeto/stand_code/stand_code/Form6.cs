@@ -92,14 +92,14 @@ namespace stand_code
             MessageBox.Show(msg);
             if (nr_rows > 0)
             {
-                MessageBox.Show("Advertised successfully created!");
+                //MessageBox.Show("Advertised successfully created!");
                 MainForm form = new MainForm();
                 this.Hide();
                 form.Show();
             }
             else
             {
-                MessageBox.Show("Error while creating the advertisement!");
+                //MessageBox.Show("Error while creating the advertisement!");
             }
 
         }

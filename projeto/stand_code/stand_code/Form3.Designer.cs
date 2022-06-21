@@ -40,8 +40,18 @@ namespace stand_code
             this.cancel_button = new System.Windows.Forms.Button();
             this.table_anuncios_utilizador_carros = new System.Windows.Forms.DataGridView();
             this.table_anuncios_utilizador_pecas = new System.Windows.Forms.DataGridView();
+            this.change_credentials_button = new System.Windows.Forms.Button();
+            this.new_title_input = new System.Windows.Forms.TextBox();
+            this.new_price_input = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.id_anuncio_input = new System.Windows.Forms.TextBox();
+            this.edit_button = new System.Windows.Forms.Button();
+            this.favourites_table = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.table_anuncios_utilizador_carros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table_anuncios_utilizador_pecas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.favourites_table)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -114,7 +124,7 @@ namespace stand_code
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(706, 10);
+            this.cancel_button.Location = new System.Drawing.Point(1453, 701);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 8;
@@ -127,22 +137,108 @@ namespace stand_code
             this.table_anuncios_utilizador_carros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table_anuncios_utilizador_carros.Location = new System.Drawing.Point(12, 95);
             this.table_anuncios_utilizador_carros.Name = "table_anuncios_utilizador_carros";
-            this.table_anuncios_utilizador_carros.Size = new System.Drawing.Size(1201, 246);
+            this.table_anuncios_utilizador_carros.Size = new System.Drawing.Size(1091, 246);
             this.table_anuncios_utilizador_carros.TabIndex = 9;
             // 
             // table_anuncios_utilizador_pecas
             // 
             this.table_anuncios_utilizador_pecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table_anuncios_utilizador_pecas.Location = new System.Drawing.Point(12, 387);
+            this.table_anuncios_utilizador_pecas.Location = new System.Drawing.Point(12, 393);
             this.table_anuncios_utilizador_pecas.Name = "table_anuncios_utilizador_pecas";
-            this.table_anuncios_utilizador_pecas.Size = new System.Drawing.Size(1201, 246);
+            this.table_anuncios_utilizador_pecas.Size = new System.Drawing.Size(1091, 246);
             this.table_anuncios_utilizador_pecas.TabIndex = 10;
+            this.table_anuncios_utilizador_pecas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_anuncios_utilizador_pecas_CellContentClick);
+            // 
+            // change_credentials_button
+            // 
+            this.change_credentials_button.Location = new System.Drawing.Point(864, 10);
+            this.change_credentials_button.Name = "change_credentials_button";
+            this.change_credentials_button.Size = new System.Drawing.Size(132, 23);
+            this.change_credentials_button.TabIndex = 11;
+            this.change_credentials_button.Text = "Change Credentials";
+            this.change_credentials_button.UseVisualStyleBackColor = true;
+            this.change_credentials_button.Click += new System.EventHandler(this.change_credentials_button_Click);
+            // 
+            // new_title_input
+            // 
+            this.new_title_input.Location = new System.Drawing.Point(1264, 145);
+            this.new_title_input.Name = "new_title_input";
+            this.new_title_input.Size = new System.Drawing.Size(227, 20);
+            this.new_title_input.TabIndex = 12;
+            // 
+            // new_price_input
+            // 
+            this.new_price_input.Location = new System.Drawing.Point(1264, 202);
+            this.new_price_input.Name = "new_price_input";
+            this.new_price_input.Size = new System.Drawing.Size(227, 20);
+            this.new_price_input.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1204, 151);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "New title:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1204, 209);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "New price:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1190, 98);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "ID Advertise:";
+            // 
+            // id_anuncio_input
+            // 
+            this.id_anuncio_input.Location = new System.Drawing.Point(1264, 95);
+            this.id_anuncio_input.Name = "id_anuncio_input";
+            this.id_anuncio_input.Size = new System.Drawing.Size(227, 20);
+            this.id_anuncio_input.TabIndex = 16;
+            // 
+            // edit_button
+            // 
+            this.edit_button.Location = new System.Drawing.Point(1296, 256);
+            this.edit_button.Name = "edit_button";
+            this.edit_button.Size = new System.Drawing.Size(142, 85);
+            this.edit_button.TabIndex = 18;
+            this.edit_button.Text = "Edit";
+            this.edit_button.UseVisualStyleBackColor = true;
+            this.edit_button.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // favourites_table
+            // 
+            this.favourites_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.favourites_table.Location = new System.Drawing.Point(1128, 393);
+            this.favourites_table.Name = "favourites_table";
+            this.favourites_table.Size = new System.Drawing.Size(400, 246);
+            this.favourites_table.TabIndex = 19;
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 654);
+            this.ClientSize = new System.Drawing.Size(1583, 776);
+            this.Controls.Add(this.favourites_table);
+            this.Controls.Add(this.edit_button);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.id_anuncio_input);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.new_price_input);
+            this.Controls.Add(this.new_title_input);
+            this.Controls.Add(this.change_credentials_button);
             this.Controls.Add(this.table_anuncios_utilizador_pecas);
             this.Controls.Add(this.table_anuncios_utilizador_carros);
             this.Controls.Add(this.cancel_button);
@@ -159,6 +255,7 @@ namespace stand_code
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.table_anuncios_utilizador_carros)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table_anuncios_utilizador_pecas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.favourites_table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +274,14 @@ namespace stand_code
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.DataGridView table_anuncios_utilizador_carros;
         private System.Windows.Forms.DataGridView table_anuncios_utilizador_pecas;
+        private System.Windows.Forms.Button change_credentials_button;
+        private System.Windows.Forms.TextBox new_title_input;
+        private System.Windows.Forms.TextBox new_price_input;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox id_anuncio_input;
+        private System.Windows.Forms.Button edit_button;
+        private System.Windows.Forms.DataGridView favourites_table;
     }
 }
