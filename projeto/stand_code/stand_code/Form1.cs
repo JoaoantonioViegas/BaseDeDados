@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace stand_code
 {
@@ -18,6 +19,8 @@ namespace stand_code
         string km_value = "";
         string search_value = "";
         string condition_value = "";
+        string selected_ad = "";
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,7 +28,7 @@ namespace stand_code
         private void Form1_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
 
@@ -35,14 +38,15 @@ namespace stand_code
                 add_anuncio_button.Enabled = true;
                 add_car.Enabled = true;
                 add_favourites_button.Enabled = true;
+                buy_button.Enabled = true;
             } else
             {
                 profile_button.Enabled = false;
                 add_anuncio_button.Enabled = false;
                 add_car.Enabled = false;
                 add_favourites_button.Enabled = false;
+                buy_button.Enabled = false;
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -192,7 +196,7 @@ namespace stand_code
         {
             SqlCommand cmd1 = new SqlCommand("add_to_favourties", cnn);
             cmd1.CommandType = CommandType.StoredProcedure;
-            cmd1.Parameters.Add("@id_anuncio", int.Parse(id_anuncio_input.Text));
+            cmd1.Parameters.Add("@id_anuncio", int.Parse(this.selected_ad));
             cmd1.Parameters.Add("@id_client", Program.log_id);
                
             cmd1.Parameters.Add("@response", SqlDbType.VarChar, 50);
@@ -206,6 +210,82 @@ namespace stand_code
             cnn.Close();
             MainForm form = new MainForm();
             form.Show();
+        }
+
+        private void search_result_table_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(search_result_table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                search_result_table.CurrentRow.Selected = true;
+                this.selected_ad = search_result_table.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
+
+                DataTable dt = search_result_table.DataSource as DataTable;
+                if (dt != null)
+                {
+                    DataRow row = dt.Rows[e.RowIndex];
+                    if(row["imagem"].ToString() != "")
+                    {
+                        pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                    }
+                }
+
+            } else
+            {
+                search_result_table.CurrentRow.Selected = false;
+            }
+        }
+
+        public Image convertByteArraytoImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        private void table_pecas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (table_pecas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                table_pecas.CurrentRow.Selected = true;
+                this.selected_ad = table_pecas.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
+
+                DataTable dt = table_pecas.DataSource as DataTable;
+                if (dt != null)
+                {
+                    DataRow row = dt.Rows[e.RowIndex];
+                    if(row["imagem"].ToString() != "") {
+                        pictureBox2.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                    }
+                }
+
+            }
+            else
+            {
+                table_pecas.CurrentRow.Selected = false;
+            }
+        }
+
+        private void buy_button_Click(object sender, EventArgs e)
+        {
+            if (this.selected_ad != "")
+            {
+                SqlCommand cmd = new SqlCommand("accept_advertise", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@id_client", int.Parse(Program.log_id)));
+                cmd.Parameters.Add(new SqlParameter("id_anuncio", int.Parse(this.selected_ad)));
+                cmd.Parameters.Add("@response", SqlDbType.VarChar, 40);
+                cmd.Parameters["@response"].Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+                string msg = cmd.Parameters["@response"].Value.ToString();
+                MessageBox.Show(msg);
+
+                this.Hide();
+                cnn.Close();
+                MainForm form = new MainForm();
+                form.Show();
+            }
         }
     }
 }

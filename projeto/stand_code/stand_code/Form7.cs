@@ -61,7 +61,7 @@ namespace stand_code
         private void ChangeCredentialsForm_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
         }
@@ -72,6 +72,11 @@ namespace stand_code
             cnn.Close();
             this.Hide();
             form.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

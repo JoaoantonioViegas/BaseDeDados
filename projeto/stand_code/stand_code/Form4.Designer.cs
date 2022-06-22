@@ -50,18 +50,18 @@ namespace stand_code
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(54, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "First Name:";
+            this.label1.Text = "Primeiro Nome:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(54, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Last Name:";
+            this.label2.Text = "Último Nome:";
             // 
             // label3
             // 
@@ -116,7 +116,7 @@ namespace stand_code
             this.register_button.Name = "register_button";
             this.register_button.Size = new System.Drawing.Size(75, 23);
             this.register_button.TabIndex = 8;
-            this.register_button.Text = "Register";
+            this.register_button.Text = "Registar";
             this.register_button.UseVisualStyleBackColor = true;
             this.register_button.Click += new System.EventHandler(this.register_button_Click);
             // 
@@ -126,7 +126,7 @@ namespace stand_code
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 9;
-            this.cancel_button.Text = "Cancel";
+            this.cancel_button.Text = "Cancelar";
             this.cancel_button.UseVisualStyleBackColor = true;
             this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
@@ -142,9 +142,9 @@ namespace stand_code
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(54, 229);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Telephone:";
+            this.label5.Text = "Telefone:";
             // 
             // Nif_input
             // 
@@ -159,9 +159,9 @@ namespace stand_code
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(54, 282);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Nif:";
+            this.label6.Text = "NIF:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // RegisterForm

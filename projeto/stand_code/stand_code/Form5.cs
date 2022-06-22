@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace stand_code
 {
@@ -26,7 +27,7 @@ namespace stand_code
         private void AddAdvertisementForm_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
         }
@@ -62,7 +63,8 @@ namespace stand_code
             cmd.Parameters.Add("@price", SqlDbType.Real).Value = this.price;
             cmd.Parameters.Add("@piece_name", SqlDbType.VarChar,30).Value = this.piece_name;
             cmd.Parameters.Add("@piece_condition", SqlDbType.VarChar,10).Value = this.piece_condition;
-            cmd.Parameters.Add("@categoria", SqlDbType.VarChar, 50).Value = this.categoria_input.Text;
+            cmd.Parameters.Add("@categoria", SqlDbType.VarChar, 50).Value = this.comboBox1.SelectedItem.ToString();
+            cmd.Parameters.Add(new SqlParameter("@image", convertImageToBytes(pictureBox1.Image)));
             cmd.Parameters.Add("@response", SqlDbType.VarChar, 50);
             cmd.Parameters["@response"].Direction = ParameterDirection.Output;
 
@@ -87,5 +89,32 @@ namespace stand_code
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void add_image_button_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image files(*.jpg;*jpeg;*.png)|*.jpg|*.jpeg|*.png", Multiselect = false })
+            {
+                if(ofd.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox1.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+
+        }
+
+        byte[] convertImageToBytes(Image img)
+        {
+            using(MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
     }
 }

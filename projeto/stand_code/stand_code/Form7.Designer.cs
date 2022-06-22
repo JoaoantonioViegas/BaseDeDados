@@ -56,18 +56,19 @@ namespace stand_code
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(63, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "New Email:";
+            this.label1.Text = "Novo Email:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(63, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "New Password:";
+            this.label2.Text = "Nova Password:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // submit_button
             // 
@@ -75,7 +76,7 @@ namespace stand_code
             this.submit_button.Name = "submit_button";
             this.submit_button.Size = new System.Drawing.Size(94, 46);
             this.submit_button.TabIndex = 4;
-            this.submit_button.Text = "Submit";
+            this.submit_button.Text = "Editar";
             this.submit_button.UseVisualStyleBackColor = true;
             this.submit_button.Click += new System.EventHandler(this.submit_button_Click);
             // 
@@ -85,7 +86,7 @@ namespace stand_code
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(87, 46);
             this.cancel_button.TabIndex = 5;
-            this.cancel_button.Text = "Cancel";
+            this.cancel_button.Text = "Cancelar";
             this.cancel_button.UseVisualStyleBackColor = true;
             this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 

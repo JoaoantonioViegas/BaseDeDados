@@ -48,16 +48,16 @@ insert into favourites values	(1, 2),
 								(5, 2);
 
 
-insert into item values	(3),
-						(4),
-						(1),
-						(2),
-						(5),
-						(6),
-						(7),
-						(8),
-						(9),
-						(10);
+insert into item values	(3, null),
+						(4, null),
+						(1, null),
+						(2, null),
+						(5, null),
+						(6, null),
+						(7, null),
+						(8, null),
+						(9, null),
+						(10, null);
 
 insert into peca values (1, 'Peca1', 'Usado'),
 						(2, 'Peca2', 'Usado'),
@@ -79,12 +79,10 @@ insert into veiculo values	(6, 'AB12AB', 'Astra', 2001, 'Gasolina', 'Opel'),
 
 insert into veiculo_terrestre(ID_Veiculo, segmento, quilometros, tipo_veiculo)
 values	(6, 'Cabrio', 100000, 'Carro'),
-		(7, 'Comercial', 39000, 'Carro'),
+		(7, 'Coupé', 39000, 'Carro'),
 		(8, 'Citadino', 123900, 'Carro'),
 		(9, 'Citadino', 99800, 'Carro'),
 		(1, 'Citadino', 40000, 'Carro');
-
-
 
 /* Delete data from tables */
 /*

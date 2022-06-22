@@ -26,18 +26,15 @@ create table anuncio(
 	Preco				real,
 );
 
-create nonclustered index anuncioVendedorIdIndex on anuncio(ID_Vendedor);
-
-select * from anuncio;
-
 create table favourites(
-	ID_Client			int					not null foreign key references cliente(ID_Cliente),
+	ID_Client			int					not null foreign key references utilizador(ID_utilizador),
 	ID_Anuncio			int					not null foreign key references anuncio(ID_Anuncio)		on delete cascade
 );
 
 create table item (
 	ID					int					not null	primary key identity(1,1),
-	ID_Anuncio			int					not null	foreign key references anuncio(ID_Anuncio)	on delete cascade
+	ID_Anuncio			int					not null	foreign key references anuncio(ID_Anuncio)	on delete cascade,
+	imagem				image
 );
 
 create table peca(
@@ -68,9 +65,9 @@ create table veiculo(
 create table veiculo_terrestre (
 	ID_Veiculo			int					foreign key references Veiculo(ID_Item)		on delete cascade,
 	sub_modelo			varchar(30),		
-	segmento			varchar(30)			not null,	--citadino, coupe etc etc
+	segmento			varchar(30)			not null	check(segmento = 'Citadino' or segmento = 'Coupé' or segmento = 'Cabrio' or segmento = 'Carrinha' or segmento = 'Monovolume' or segmento = 'SUV'),
 	quilometros			int					not null,
-	tipo_veiculo		varchar(20)			not null			check(tipo_veiculo = 'Autocaravana' or tipo_veiculo = 'Moto' or tipo_veiculo = 'Comercial' or tipo_veiculo = 'Carro')
+	tipo_veiculo		varchar(20)			not null	check(tipo_veiculo = 'Autocaravana' or tipo_veiculo = 'Moto' or tipo_veiculo = 'Comercial' or tipo_veiculo = 'Carro')
 );
 
 create table veiculo_aquatico (
@@ -79,6 +76,7 @@ create table veiculo_aquatico (
 	tipo_veiculo		varchar(20)			not null			check(tipo_veiculo = 'Barco' or tipo_veiculo = 'Mota_agua')
 );
 
+create nonclustered index anuncioVendedorIdIndex on anuncio(ID_Vendedor);
 
 /* Drop tables */
 /*

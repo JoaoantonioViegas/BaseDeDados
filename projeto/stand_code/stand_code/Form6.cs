@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace stand_code
 {
@@ -31,7 +32,7 @@ namespace stand_code
         {
             InitializeComponent();
             string connectionString;
-            connectionString = "data source = VIEGAS\\SQLEXPRESS; integrated security=true; initial catalog = stand";
+            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
             cnn = new SqlConnection(connectionString);
             cnn.Open();
         }
@@ -83,6 +84,7 @@ namespace stand_code
             cmd.Parameters.Add("@kms", SqlDbType.Int).Value = Int32.Parse(kms_value);
             //cmd.Parameters.Add(new SqlParameter("@tipo_veiculo", tipoveiculo_value));
             cmd.Parameters.Add("@tipo_veiculo", SqlDbType.VarChar, 40).Value = tipoveiculo_value;
+            cmd.Parameters.Add(new SqlParameter("@imagem", convertImageToBytes(pictureBox1.Image)));
             //cmd.Parameters.Add(new SqlParameter("@response", response));
             cmd.Parameters.Add("@response", SqlDbType.VarChar, 50);
             cmd.Parameters["@response"].Direction = ParameterDirection.Output;
@@ -102,6 +104,27 @@ namespace stand_code
                 //MessageBox.Show("Error while creating the advertisement!");
             }
 
+        }
+
+        private void add_image_button_Click_1(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image files(*.jpg;*jpeg;*.png)|*.jpg|*.jpeg|*.png", Multiselect = false })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox1.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+
+        }
+
+        byte[] convertImageToBytes(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -134,11 +157,6 @@ namespace stand_code
             this.submodelo_value = submodel_input.Text;
         }
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-            this.segmento_value = segment_input.Text;
-        }
-
         private void piece_name_input_TextChanged(object sender, EventArgs e)
         {
             
@@ -165,6 +183,12 @@ namespace stand_code
         {
             this.kms_value = km_input.Text;
         }
+
+        private void segmento_input_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.segmento_value = segmento_input.SelectedItem.ToString();
+        }
+
     }
     }
 

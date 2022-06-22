@@ -48,11 +48,14 @@ namespace stand_code
             this.year_input = new System.Windows.Forms.TextBox();
             this.km_input = new System.Windows.Forms.TextBox();
             this.submodel_input = new System.Windows.Forms.TextBox();
-            this.segment_input = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.brand_input = new System.Windows.Forms.TextBox();
             this.fuel_input = new System.Windows.Forms.ComboBox();
             this.tipo_input = new System.Windows.Forms.ComboBox();
+            this.segmento_input = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.add_image_button = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // create_ad_button
@@ -78,9 +81,9 @@ namespace stand_code
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(30, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Price:";
+            this.label2.Text = "Preço:";
             // 
             // title_input
             // 
@@ -95,81 +98,81 @@ namespace stand_code
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Title:";
+            this.label1.Text = "Título:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(30, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Plate:";
+            this.label6.Text = "Matrícula:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(30, 203);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 20;
-            this.label7.Text = "Model:";
+            this.label7.Text = "Modelo:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(30, 244);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.Size = new System.Drawing.Size(29, 13);
             this.label8.TabIndex = 21;
-            this.label8.Text = "Year:";
+            this.label8.Text = "Ano:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(30, 277);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 22;
-            this.label9.Text = "Fuel:";
+            this.label9.Text = "Combustível:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(30, 319);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.Size = new System.Drawing.Size(40, 13);
             this.label10.TabIndex = 23;
-            this.label10.Text = "Brand:";
+            this.label10.Text = "Marca:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(30, 361);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 13);
+            this.label11.Size = new System.Drawing.Size(66, 13);
             this.label11.TabIndex = 24;
-            this.label11.Text = "Sub model:";
+            this.label11.Text = "Sub-modelo:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(30, 399);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 13);
+            this.label12.Size = new System.Drawing.Size(58, 13);
             this.label12.TabIndex = 25;
-            this.label12.Text = "Segment:";
+            this.label12.Text = "Segmento:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(496, 59);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.Size = new System.Drawing.Size(58, 13);
             this.label13.TabIndex = 26;
-            this.label13.Text = "Kms:";
+            this.label13.Text = "Kilometros:";
             // 
             // label14
             // 
@@ -220,14 +223,6 @@ namespace stand_code
             this.submodel_input.TabIndex = 35;
             this.submodel_input.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
-            // segment_input
-            // 
-            this.segment_input.Location = new System.Drawing.Point(101, 399);
-            this.segment_input.Name = "segment_input";
-            this.segment_input.Size = new System.Drawing.Size(202, 20);
-            this.segment_input.TabIndex = 36;
-            this.segment_input.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(542, 415);
@@ -275,15 +270,51 @@ namespace stand_code
             this.tipo_input.TabIndex = 40;
             this.tipo_input.SelectedIndexChanged += new System.EventHandler(this.tipo_input_SelectedIndexChanged);
             // 
+            // segmento_input
+            // 
+            this.segmento_input.FormattingEnabled = true;
+            this.segmento_input.Items.AddRange(new object[] {
+            "Citadino",
+            "Coupé",
+            "Cabrio",
+            "Carrinha",
+            "Monovolume",
+            "SUV"});
+            this.segmento_input.Location = new System.Drawing.Point(101, 399);
+            this.segmento_input.Name = "segmento_input";
+            this.segmento_input.Size = new System.Drawing.Size(202, 21);
+            this.segmento_input.TabIndex = 41;
+            this.segmento_input.SelectedIndexChanged += new System.EventHandler(this.segmento_input_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(361, 203);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(396, 206);
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
+            // 
+            // add_image_button
+            // 
+            this.add_image_button.Location = new System.Drawing.Point(361, 154);
+            this.add_image_button.Name = "add_image_button";
+            this.add_image_button.Size = new System.Drawing.Size(145, 43);
+            this.add_image_button.TabIndex = 43;
+            this.add_image_button.Text = "Adicionar Imagem";
+            this.add_image_button.UseVisualStyleBackColor = true;
+            this.add_image_button.Click += new System.EventHandler(this.add_image_button_Click_1);
+            // 
             // Form6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.add_image_button);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.segmento_input);
             this.Controls.Add(this.tipo_input);
             this.Controls.Add(this.fuel_input);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.segment_input);
             this.Controls.Add(this.submodel_input);
             this.Controls.Add(this.km_input);
             this.Controls.Add(this.brand_input);
@@ -307,6 +338,7 @@ namespace stand_code
             this.Name = "Form6";
             this.Text = "Form6";
             this.Load += new System.EventHandler(this.Form6_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,10 +365,12 @@ namespace stand_code
         private System.Windows.Forms.TextBox year_input;
         private System.Windows.Forms.TextBox km_input;
         private System.Windows.Forms.TextBox submodel_input;
-        private System.Windows.Forms.TextBox segment_input;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox brand_input;
         private System.Windows.Forms.ComboBox fuel_input;
         private System.Windows.Forms.ComboBox tipo_input;
+        private System.Windows.Forms.ComboBox segmento_input;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button add_image_button;
     }
 }

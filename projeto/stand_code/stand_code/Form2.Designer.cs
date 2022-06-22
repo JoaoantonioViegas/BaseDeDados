@@ -88,7 +88,7 @@ namespace stand_code
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 5;
-            this.cancel_button.Text = "Cancel";
+            this.cancel_button.Text = "Cancelar";
             this.cancel_button.UseVisualStyleBackColor = true;
             this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
@@ -96,7 +96,7 @@ namespace stand_code
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(408, 223);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.login_button);
             this.Controls.Add(this.password_input);
