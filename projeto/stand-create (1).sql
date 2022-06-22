@@ -1,5 +1,6 @@
 --create database stand;
-use stand;
+--create schema stand;
+--use stand;
 create table utilizador(
 	ID_utilizador		int					not null	identity(1,1),
 	FName				varchar(30)			not null,

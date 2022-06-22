@@ -28,9 +28,13 @@ namespace stand_code
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
-            string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
-            cnn = new SqlConnection(connectionString);
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder();
+            scsBuilder.UserID = Program.UserID;
+            scsBuilder.Password = Program.Password;
+            scsBuilder.DataSource = Program.DataSource;
+            scsBuilder.InitialCatalog = Program.InitialCatalog;
+            scsBuilder.IntegratedSecurity = false;
+            cnn = new SqlConnection(scsBuilder.ConnectionString);
             cnn.Open();
             SqlCommand cmd = new SqlCommand("get_user_info", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -101,7 +105,13 @@ namespace stand_code
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cnn1 = new SqlConnection("data source = LENOVO-PC; integrated security=true; initial catalog = stand");
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder();
+            scsBuilder.UserID = Program.UserID;
+            scsBuilder.Password = Program.Password;
+            scsBuilder.DataSource = Program.DataSource;
+            scsBuilder.InitialCatalog = Program.InitialCatalog;
+            scsBuilder.IntegratedSecurity = false;
+            SqlConnection cnn1 = new SqlConnection(scsBuilder.ConnectionString);
             cnn1.Open();
             SqlCommand cmd = new SqlCommand("update_anuncio", cnn1);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -139,27 +149,31 @@ namespace stand_code
 
         private void table_anuncios_utilizador_carros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (table_anuncios_utilizador_carros.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                table_anuncios_utilizador_carros.CurrentRow.Selected = true;
-                this.selected_ad = table_anuncios_utilizador_carros.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
-                edit_button.Enabled = true;
-
-                DataTable dt = table_anuncios_utilizador_carros.DataSource as DataTable;
-                if (dt != null)
+                if (table_anuncios_utilizador_carros.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    DataRow row = dt.Rows[e.RowIndex];
-                    if(row["imagem"].ToString() != "")
-                    {
-                        pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
-                    }
-                }
+                    table_anuncios_utilizador_carros.CurrentRow.Selected = true;
+                    this.selected_ad = table_anuncios_utilizador_carros.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
+                    edit_button.Enabled = true;
 
+                    DataTable dt = table_anuncios_utilizador_carros.DataSource as DataTable;
+                    if (dt != null)
+                    {
+                        DataRow row = dt.Rows[e.RowIndex];
+                        if (row["imagem"].ToString() != "")
+                        {
+                            pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                        }
+                    }
+
+                }
+                else
+                {
+                    table_anuncios_utilizador_carros.CurrentRow.Selected = false;
+                }
             }
-            else
-            {
-                table_anuncios_utilizador_carros.CurrentRow.Selected = false;
-            }
+            
         }
 
         public Image convertByteArraytoImage(byte[] data)
@@ -172,25 +186,29 @@ namespace stand_code
 
         private void table_anuncios_utilizador_pecas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (table_anuncios_utilizador_pecas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                table_anuncios_utilizador_pecas.CurrentRow.Selected = true;
-                this.selected_ad = table_anuncios_utilizador_pecas.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
-                edit_button.Enabled = true;
-                DataTable dt = table_anuncios_utilizador_pecas.DataSource as DataTable;
-                if(dt != null)
+                if (table_anuncios_utilizador_pecas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    DataRow row = dt.Rows[e.RowIndex];
-                    if(row["imagem"].ToString() != "")
+                    table_anuncios_utilizador_pecas.CurrentRow.Selected = true;
+                    this.selected_ad = table_anuncios_utilizador_pecas.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
+                    edit_button.Enabled = true;
+                    DataTable dt = table_anuncios_utilizador_pecas.DataSource as DataTable;
+                    if (dt != null)
                     {
-                        pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                        DataRow row = dt.Rows[e.RowIndex];
+                        if (row["imagem"].ToString() != "")
+                        {
+                            pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                        }
                     }
                 }
+                else
+                {
+                    table_anuncios_utilizador_pecas.CurrentRow.Selected = false;
+                }
             }
-            else
-            {
-                table_anuncios_utilizador_pecas.CurrentRow.Selected = false;
-            }
+            
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -200,7 +218,13 @@ namespace stand_code
 
         private void delete_ad_button_Click(object sender, EventArgs e)
         {
-            SqlConnection cnn1 = new SqlConnection("data source = LENOVO-PC; integrated security=true; initial catalog = stand");
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder();
+            scsBuilder.UserID = Program.UserID;
+            scsBuilder.Password = Program.Password;
+            scsBuilder.DataSource = Program.DataSource;
+            scsBuilder.InitialCatalog = Program.InitialCatalog;
+            scsBuilder.IntegratedSecurity = false;
+            SqlConnection cnn1 = new SqlConnection(scsBuilder.ConnectionString);
             cnn1.Open();
             if (this.selected_ad != "")
             {
@@ -228,6 +252,11 @@ namespace stand_code
         }
 
         private void table_anuncios_utilizador_carros_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
         {
 
         }

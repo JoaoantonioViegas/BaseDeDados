@@ -1,4 +1,4 @@
-use stand;
+-- use stand;
 
 -- quando um utilizador cria um anuncio, automaticamente é inserido na tabela de vendedores(quando já está na tabela nao é adicionado)
 create trigger add_client_seller ON anuncio

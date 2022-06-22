@@ -31,9 +31,13 @@ namespace stand_code
         public Form6()
         {
             InitializeComponent();
-            string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
-            cnn = new SqlConnection(connectionString);
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder();
+            scsBuilder.UserID = Program.UserID;
+            scsBuilder.Password = Program.Password;
+            scsBuilder.DataSource = Program.DataSource;
+            scsBuilder.InitialCatalog = Program.InitialCatalog;
+            scsBuilder.IntegratedSecurity = false;
+            cnn = new SqlConnection(scsBuilder.ConnectionString);
             cnn.Open();
         }
 

@@ -72,7 +72,7 @@ namespace stand_code
             // 
             // submit_button
             // 
-            this.submit_button.Location = new System.Drawing.Point(66, 241);
+            this.submit_button.Location = new System.Drawing.Point(66, 186);
             this.submit_button.Name = "submit_button";
             this.submit_button.Size = new System.Drawing.Size(94, 46);
             this.submit_button.TabIndex = 4;
@@ -82,7 +82,7 @@ namespace stand_code
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(256, 241);
+            this.cancel_button.Location = new System.Drawing.Point(223, 186);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(87, 46);
             this.cancel_button.TabIndex = 5;
@@ -94,7 +94,7 @@ namespace stand_code
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(429, 283);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.submit_button);
             this.Controls.Add(this.label2);

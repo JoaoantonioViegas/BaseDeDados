@@ -28,8 +28,14 @@ namespace stand_code
         private void Form1_Load(object sender, EventArgs e)
         {
             string connectionString;
-            connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
-            cnn = new SqlConnection(connectionString);
+            //connectionString = "data source = LENOVO-PC; integrated security=true; initial catalog = stand";
+            SqlConnectionStringBuilder scsBuilder = new SqlConnectionStringBuilder();
+            scsBuilder.UserID = Program.UserID;
+            scsBuilder.Password = Program.Password;
+            scsBuilder.DataSource = Program.DataSource;
+            scsBuilder.InitialCatalog = Program.InitialCatalog;
+            scsBuilder.IntegratedSecurity = false;
+            cnn = new SqlConnection(scsBuilder.ConnectionString);
             cnn.Open();
 
             if(Program.log_id != "")
@@ -214,25 +220,30 @@ namespace stand_code
 
         private void search_result_table_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(search_result_table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            if(e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                search_result_table.CurrentRow.Selected = true;
-                this.selected_ad = search_result_table.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
-
-                DataTable dt = search_result_table.DataSource as DataTable;
-                if (dt != null)
+                if (search_result_table.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    DataRow row = dt.Rows[e.RowIndex];
-                    if(row["imagem"].ToString() != "")
-                    {
-                        pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
-                    }
-                }
+                    search_result_table.CurrentRow.Selected = true;
+                    this.selected_ad = search_result_table.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
 
-            } else
-            {
-                search_result_table.CurrentRow.Selected = false;
+                    DataTable dt = search_result_table.DataSource as DataTable;
+                    if (dt != null)
+                    {
+                        DataRow row = dt.Rows[e.RowIndex];
+                        if (row["imagem"].ToString() != "")
+                        {
+                            pictureBox1.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                        }
+                    }
+
+                }
+                else
+                {
+                    search_result_table.CurrentRow.Selected = false;
+                }
             }
+            
         }
 
         public Image convertByteArraytoImage(byte[] data)
@@ -245,25 +256,30 @@ namespace stand_code
 
         private void table_pecas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (table_pecas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            if(e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                table_pecas.CurrentRow.Selected = true;
-                this.selected_ad = table_pecas.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
-
-                DataTable dt = table_pecas.DataSource as DataTable;
-                if (dt != null)
+                if (table_pecas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null && e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    DataRow row = dt.Rows[e.RowIndex];
-                    if(row["imagem"].ToString() != "") {
-                        pictureBox2.Image = convertByteArraytoImage((byte[])row["imagem"]);
-                    }
-                }
+                    table_pecas.CurrentRow.Selected = true;
+                    this.selected_ad = table_pecas.Rows[e.RowIndex].Cells["ID_Anuncio"].FormattedValue.ToString();
 
+                    DataTable dt = table_pecas.DataSource as DataTable;
+                    if (dt != null)
+                    {
+                        DataRow row = dt.Rows[e.RowIndex];
+                        if (row["imagem"].ToString() != "")
+                        {
+                            pictureBox2.Image = convertByteArraytoImage((byte[])row["imagem"]);
+                        }
+                    }
+
+                }
+                else
+                {
+                    table_pecas.CurrentRow.Selected = false;
+                }
             }
-            else
-            {
-                table_pecas.CurrentRow.Selected = false;
-            }
+            
         }
 
         private void buy_button_Click(object sender, EventArgs e)

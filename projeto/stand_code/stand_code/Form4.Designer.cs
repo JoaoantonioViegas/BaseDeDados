@@ -85,21 +85,21 @@ namespace stand_code
             // 
             this.email_input.Location = new System.Drawing.Point(144, 135);
             this.email_input.Name = "email_input";
-            this.email_input.Size = new System.Drawing.Size(132, 20);
+            this.email_input.Size = new System.Drawing.Size(208, 20);
             this.email_input.TabIndex = 4;
             // 
             // lastname_input
             // 
             this.lastname_input.Location = new System.Drawing.Point(144, 85);
             this.lastname_input.Name = "lastname_input";
-            this.lastname_input.Size = new System.Drawing.Size(132, 20);
+            this.lastname_input.Size = new System.Drawing.Size(208, 20);
             this.lastname_input.TabIndex = 5;
             // 
             // firstname_input
             // 
             this.firstname_input.Location = new System.Drawing.Point(144, 40);
             this.firstname_input.Name = "firstname_input";
-            this.firstname_input.Size = new System.Drawing.Size(132, 20);
+            this.firstname_input.Size = new System.Drawing.Size(208, 20);
             this.firstname_input.TabIndex = 6;
             this.firstname_input.TextChanged += new System.EventHandler(this.firstname_input_TextChanged);
             // 
@@ -107,14 +107,14 @@ namespace stand_code
             // 
             this.pw_input.Location = new System.Drawing.Point(144, 180);
             this.pw_input.Name = "pw_input";
-            this.pw_input.Size = new System.Drawing.Size(132, 20);
+            this.pw_input.Size = new System.Drawing.Size(208, 20);
             this.pw_input.TabIndex = 7;
             // 
             // register_button
             // 
             this.register_button.Location = new System.Drawing.Point(29, 334);
             this.register_button.Name = "register_button";
-            this.register_button.Size = new System.Drawing.Size(75, 23);
+            this.register_button.Size = new System.Drawing.Size(95, 44);
             this.register_button.TabIndex = 8;
             this.register_button.Text = "Registar";
             this.register_button.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@ namespace stand_code
             // 
             this.cancel_button.Location = new System.Drawing.Point(191, 334);
             this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(75, 23);
+            this.cancel_button.Size = new System.Drawing.Size(85, 44);
             this.cancel_button.TabIndex = 9;
             this.cancel_button.Text = "Cancelar";
             this.cancel_button.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@ namespace stand_code
             // 
             this.tel_input.Location = new System.Drawing.Point(144, 226);
             this.tel_input.Name = "tel_input";
-            this.tel_input.Size = new System.Drawing.Size(132, 20);
+            this.tel_input.Size = new System.Drawing.Size(208, 20);
             this.tel_input.TabIndex = 11;
             // 
             // label5
@@ -150,7 +150,7 @@ namespace stand_code
             // 
             this.Nif_input.Location = new System.Drawing.Point(144, 279);
             this.Nif_input.Name = "Nif_input";
-            this.Nif_input.Size = new System.Drawing.Size(132, 20);
+            this.Nif_input.Size = new System.Drawing.Size(208, 20);
             this.Nif_input.TabIndex = 13;
             this.Nif_input.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -168,7 +168,7 @@ namespace stand_code
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 539);
+            this.ClientSize = new System.Drawing.Size(436, 393);
             this.Controls.Add(this.Nif_input);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tel_input);

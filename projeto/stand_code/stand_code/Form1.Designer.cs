@@ -43,9 +43,11 @@ namespace stand_code
             this.add_anuncio_button = new System.Windows.Forms.Button();
             this.Veiculos = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.preco_veiculo_input = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.condition_input = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.preco_input = new System.Windows.Forms.TextBox();
@@ -57,22 +59,20 @@ namespace stand_code
             this.add_car = new System.Windows.Forms.Button();
             this.add_favourites_button = new System.Windows.Forms.Button();
             this.buy_button = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.search_result_table)).BeginInit();
             this.Veiculos.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.table_pecas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table_pecas)).BeginInit();
             this.SuspendLayout();
             // 
             // login_button
             // 
-            this.login_button.Location = new System.Drawing.Point(40, 30);
+            this.login_button.Location = new System.Drawing.Point(19, 30);
             this.login_button.Name = "login_button";
-            this.login_button.Size = new System.Drawing.Size(75, 23);
+            this.login_button.Size = new System.Drawing.Size(96, 44);
             this.login_button.TabIndex = 0;
             this.login_button.Text = "Login";
             this.login_button.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@ namespace stand_code
             // 
             this.register_button.Location = new System.Drawing.Point(121, 30);
             this.register_button.Name = "register_button";
-            this.register_button.Size = new System.Drawing.Size(75, 23);
+            this.register_button.Size = new System.Drawing.Size(101, 44);
             this.register_button.TabIndex = 1;
             this.register_button.Text = "Registo";
             this.register_button.UseVisualStyleBackColor = true;
@@ -90,9 +90,9 @@ namespace stand_code
             // 
             // profile_button
             // 
-            this.profile_button.Location = new System.Drawing.Point(202, 30);
+            this.profile_button.Location = new System.Drawing.Point(228, 30);
             this.profile_button.Name = "profile_button";
-            this.profile_button.Size = new System.Drawing.Size(75, 23);
+            this.profile_button.Size = new System.Drawing.Size(105, 44);
             this.profile_button.TabIndex = 2;
             this.profile_button.Text = "Perfil";
             this.profile_button.UseVisualStyleBackColor = true;
@@ -117,9 +117,9 @@ namespace stand_code
             // 
             // search_button
             // 
-            this.search_button.Location = new System.Drawing.Point(445, 29);
+            this.search_button.Location = new System.Drawing.Point(462, 29);
             this.search_button.Name = "search_button";
-            this.search_button.Size = new System.Drawing.Size(75, 23);
+            this.search_button.Size = new System.Drawing.Size(97, 51);
             this.search_button.TabIndex = 5;
             this.search_button.Text = "Procurar";
             this.search_button.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@ namespace stand_code
             "Gasolina",
             "Gasoleo",
             "Eletrico"});
-            this.filter_fuel.Location = new System.Drawing.Point(98, 64);
+            this.filter_fuel.Location = new System.Drawing.Point(98, 74);
             this.filter_fuel.Name = "filter_fuel";
             this.filter_fuel.Size = new System.Drawing.Size(121, 21);
             this.filter_fuel.TabIndex = 7;
@@ -154,7 +154,7 @@ namespace stand_code
             // fuel_label
             // 
             this.fuel_label.AutoSize = true;
-            this.fuel_label.Location = new System.Drawing.Point(14, 67);
+            this.fuel_label.Location = new System.Drawing.Point(14, 77);
             this.fuel_label.Name = "fuel_label";
             this.fuel_label.Size = new System.Drawing.Size(64, 13);
             this.fuel_label.TabIndex = 8;
@@ -164,7 +164,7 @@ namespace stand_code
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 105);
+            this.label2.Location = new System.Drawing.Point(14, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 9;
@@ -172,7 +172,7 @@ namespace stand_code
             // 
             // km_input
             // 
-            this.km_input.Location = new System.Drawing.Point(98, 102);
+            this.km_input.Location = new System.Drawing.Point(98, 119);
             this.km_input.Name = "km_input";
             this.km_input.Size = new System.Drawing.Size(121, 20);
             this.km_input.TabIndex = 10;
@@ -220,9 +220,19 @@ namespace stand_code
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(582, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(533, 282);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // preco_veiculo_input
             // 
-            this.preco_veiculo_input.Location = new System.Drawing.Point(98, 150);
+            this.preco_veiculo_input.Location = new System.Drawing.Point(98, 163);
             this.preco_veiculo_input.Name = "preco_veiculo_input";
             this.preco_veiculo_input.Size = new System.Drawing.Size(121, 20);
             this.preco_veiculo_input.TabIndex = 12;
@@ -231,7 +241,7 @@ namespace stand_code
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 153);
+            this.label4.Location = new System.Drawing.Point(14, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 11;
@@ -257,6 +267,15 @@ namespace stand_code
             this.tabPage2.Text = "Peça";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.Location = new System.Drawing.Point(558, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(552, 279);
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
             // 
             // condition_input
             // 
@@ -367,25 +386,6 @@ namespace stand_code
             this.buy_button.UseVisualStyleBackColor = true;
             this.buy_button.Click += new System.EventHandler(this.buy_button_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(582, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(533, 282);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(558, 6);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(552, 279);
-            this.pictureBox2.TabIndex = 20;
-            this.pictureBox2.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,11 +406,11 @@ namespace stand_code
             this.Veiculos.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.table_pecas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table_pecas)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -74,9 +74,9 @@ namespace stand_code
             // 
             // login_button
             // 
-            this.login_button.Location = new System.Drawing.Point(41, 163);
+            this.login_button.Location = new System.Drawing.Point(41, 132);
             this.login_button.Name = "login_button";
-            this.login_button.Size = new System.Drawing.Size(75, 23);
+            this.login_button.Size = new System.Drawing.Size(94, 41);
             this.login_button.TabIndex = 4;
             this.login_button.Text = "Login";
             this.login_button.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@ namespace stand_code
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(226, 163);
+            this.cancel_button.Location = new System.Drawing.Point(191, 132);
             this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(75, 23);
+            this.cancel_button.Size = new System.Drawing.Size(88, 41);
             this.cancel_button.TabIndex = 5;
             this.cancel_button.Text = "Cancelar";
             this.cancel_button.UseVisualStyleBackColor = true;

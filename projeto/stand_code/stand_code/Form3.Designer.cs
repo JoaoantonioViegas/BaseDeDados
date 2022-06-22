@@ -131,9 +131,9 @@ namespace stand_code
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(1549, 838);
+            this.cancel_button.Location = new System.Drawing.Point(1404, 777);
             this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(75, 23);
+            this.cancel_button.Size = new System.Drawing.Size(139, 40);
             this.cancel_button.TabIndex = 8;
             this.cancel_button.Text = "Back";
             this.cancel_button.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@ namespace stand_code
             // 
             this.change_credentials_button.Location = new System.Drawing.Point(12, 98);
             this.change_credentials_button.Name = "change_credentials_button";
-            this.change_credentials_button.Size = new System.Drawing.Size(132, 23);
+            this.change_credentials_button.Size = new System.Drawing.Size(139, 41);
             this.change_credentials_button.TabIndex = 11;
             this.change_credentials_button.Text = "Alterar Credenciais:";
             this.change_credentials_button.UseVisualStyleBackColor = true;
@@ -176,14 +176,14 @@ namespace stand_code
             // 
             // new_title_input
             // 
-            this.new_title_input.Location = new System.Drawing.Point(1256, 337);
+            this.new_title_input.Location = new System.Drawing.Point(1209, 352);
             this.new_title_input.Name = "new_title_input";
             this.new_title_input.Size = new System.Drawing.Size(227, 20);
             this.new_title_input.TabIndex = 12;
             // 
             // new_price_input
             // 
-            this.new_price_input.Location = new System.Drawing.Point(1256, 394);
+            this.new_price_input.Location = new System.Drawing.Point(1209, 409);
             this.new_price_input.Name = "new_price_input";
             this.new_price_input.Size = new System.Drawing.Size(227, 20);
             this.new_price_input.TabIndex = 13;
@@ -191,7 +191,7 @@ namespace stand_code
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1183, 340);
+            this.label5.Location = new System.Drawing.Point(1136, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 14;
@@ -200,7 +200,7 @@ namespace stand_code
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1187, 397);
+            this.label6.Location = new System.Drawing.Point(1140, 412);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 13);
             this.label6.TabIndex = 15;
@@ -208,9 +208,9 @@ namespace stand_code
             // 
             // edit_button
             // 
-            this.edit_button.Location = new System.Drawing.Point(1288, 448);
+            this.edit_button.Location = new System.Drawing.Point(1470, 337);
             this.edit_button.Name = "edit_button";
-            this.edit_button.Size = new System.Drawing.Size(142, 85);
+            this.edit_button.Size = new System.Drawing.Size(136, 49);
             this.edit_button.TabIndex = 18;
             this.edit_button.Text = "Editar";
             this.edit_button.UseVisualStyleBackColor = true;
@@ -221,7 +221,7 @@ namespace stand_code
             this.favourites_table.AllowUserToAddRows = false;
             this.favourites_table.AllowUserToDeleteRows = false;
             this.favourites_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.favourites_table.Location = new System.Drawing.Point(1159, 575);
+            this.favourites_table.Location = new System.Drawing.Point(1143, 525);
             this.favourites_table.Name = "favourites_table";
             this.favourites_table.ReadOnly = true;
             this.favourites_table.Size = new System.Drawing.Size(400, 246);
@@ -265,7 +265,7 @@ namespace stand_code
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1183, 311);
+            this.label7.Location = new System.Drawing.Point(1135, 321);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 13);
             this.label7.TabIndex = 25;
@@ -275,15 +275,16 @@ namespace stand_code
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1156, 547);
+            this.label10.Location = new System.Drawing.Point(1156, 500);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 13);
             this.label10.TabIndex = 26;
             this.label10.Text = "Meus Favoritos:";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // delete_ad_button
             // 
-            this.delete_ad_button.Location = new System.Drawing.Point(760, 53);
+            this.delete_ad_button.Location = new System.Drawing.Point(24, 763);
             this.delete_ad_button.Name = "delete_ad_button";
             this.delete_ad_button.Size = new System.Drawing.Size(150, 68);
             this.delete_ad_button.TabIndex = 27;
@@ -293,7 +294,8 @@ namespace stand_code
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1159, 12);
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(1109, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(522, 296);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

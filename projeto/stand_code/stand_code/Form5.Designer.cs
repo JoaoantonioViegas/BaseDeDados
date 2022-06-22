@@ -42,6 +42,7 @@ namespace stand_code
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.add_image_button = new System.Windows.Forms.Button();
+            this.cancel_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +105,7 @@ namespace stand_code
             "Usado"});
             this.piece_condition_input.Location = new System.Drawing.Point(115, 231);
             this.piece_condition_input.Name = "piece_condition_input";
-            this.piece_condition_input.Size = new System.Drawing.Size(121, 21);
+            this.piece_condition_input.Size = new System.Drawing.Size(202, 21);
             this.piece_condition_input.TabIndex = 6;
             this.piece_condition_input.SelectedIndexChanged += new System.EventHandler(this.piece_condition_input_SelectedIndexChanged);
             // 
@@ -119,9 +120,9 @@ namespace stand_code
             // 
             // create_ad_button
             // 
-            this.create_ad_button.Location = new System.Drawing.Point(34, 328);
+            this.create_ad_button.Location = new System.Drawing.Point(28, 311);
             this.create_ad_button.Name = "create_ad_button";
-            this.create_ad_button.Size = new System.Drawing.Size(75, 23);
+            this.create_ad_button.Size = new System.Drawing.Size(108, 40);
             this.create_ad_button.TabIndex = 8;
             this.create_ad_button.Text = "Criar Anúncio:";
             this.create_ad_button.UseVisualStyleBackColor = true;
@@ -149,7 +150,7 @@ namespace stand_code
             "Caixa Velocidades"});
             this.comboBox1.Location = new System.Drawing.Point(115, 273);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(202, 21);
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -164,19 +165,30 @@ namespace stand_code
             // 
             // add_image_button
             // 
-            this.add_image_button.Location = new System.Drawing.Point(458, 58);
+            this.add_image_button.Location = new System.Drawing.Point(458, 41);
             this.add_image_button.Name = "add_image_button";
-            this.add_image_button.Size = new System.Drawing.Size(137, 23);
+            this.add_image_button.Size = new System.Drawing.Size(137, 40);
             this.add_image_button.TabIndex = 14;
             this.add_image_button.Text = "Adicionar Imagem";
             this.add_image_button.UseVisualStyleBackColor = true;
             this.add_image_button.Click += new System.EventHandler(this.add_image_button_Click);
             // 
+            // cancel_button
+            // 
+            this.cancel_button.Location = new System.Drawing.Point(614, 318);
+            this.cancel_button.Name = "cancel_button";
+            this.cancel_button.Size = new System.Drawing.Size(110, 40);
+            this.cancel_button.TabIndex = 15;
+            this.cancel_button.Text = "Cancelar";
+            this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
+            // 
             // AddAdvertisementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 600);
+            this.ClientSize = new System.Drawing.Size(738, 370);
+            this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.add_image_button);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox1);
@@ -214,5 +226,6 @@ namespace stand_code
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button add_image_button;
+        private System.Windows.Forms.Button cancel_button;
     }
 }

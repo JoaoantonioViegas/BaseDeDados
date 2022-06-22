@@ -60,9 +60,9 @@ namespace stand_code
             // 
             // create_ad_button
             // 
-            this.create_ad_button.Location = new System.Drawing.Point(682, 415);
+            this.create_ad_button.Location = new System.Drawing.Point(370, 399);
             this.create_ad_button.Name = "create_ad_button";
-            this.create_ad_button.Size = new System.Drawing.Size(75, 23);
+            this.create_ad_button.Size = new System.Drawing.Size(136, 39);
             this.create_ad_button.TabIndex = 17;
             this.create_ad_button.Text = "Create";
             this.create_ad_button.UseVisualStyleBackColor = true;
@@ -225,9 +225,9 @@ namespace stand_code
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(542, 415);
+            this.button1.Location = new System.Drawing.Point(621, 399);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(136, 39);
             this.button1.TabIndex = 38;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
@@ -288,7 +288,7 @@ namespace stand_code
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(361, 203);
+            this.pictureBox1.Location = new System.Drawing.Point(361, 184);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(396, 206);
             this.pictureBox1.TabIndex = 42;
@@ -296,7 +296,7 @@ namespace stand_code
             // 
             // add_image_button
             // 
-            this.add_image_button.Location = new System.Drawing.Point(361, 154);
+            this.add_image_button.Location = new System.Drawing.Point(361, 135);
             this.add_image_button.Name = "add_image_button";
             this.add_image_button.Size = new System.Drawing.Size(145, 43);
             this.add_image_button.TabIndex = 43;

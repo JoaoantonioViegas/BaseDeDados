@@ -1,4 +1,4 @@
-use stand;
+-- use stand;
 /* Insert data into the tables */
 --insert diferent data in the table
 insert into utilizador values   ('João','Silva',912345678,'joao@gmail.com', 'pass1',1273463723),
